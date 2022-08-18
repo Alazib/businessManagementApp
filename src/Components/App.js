@@ -1,14 +1,13 @@
 import { Route, Routes } from 'react-router';
-import { useState } from "react"
-import './App.css';
+import { useState } from "react";
 import ListOfWorkers from './ListOfWorkers';
 import WorkerDetail from './WorkerDetail';
 
 function App() {
 
-  const [workerDetail, setWorkerDetail] = useState({})
+  const [workerDetail, setWorkerDetail] = useState({});
 
-
+  
   return (
 
     <div className="App">
