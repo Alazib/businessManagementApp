@@ -1,11 +1,11 @@
 import "./WorkerDetail.css"
 import { Link } from "react-router-dom"
 
-function WorkerDetail() {
+function WorkerDetail({workerDetail}) {
 
     return (
         <>
-            <div> DETALLE DEL TRABAJADOR </div>
+            <div>{workerDetail.email}</div>
             <Link to={"/"}>GO BACK</Link>
         </>
     )

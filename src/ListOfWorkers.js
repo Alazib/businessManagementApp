@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 
-function ListOfWorkers() {
+function ListOfWorkers({ setWorkerDetail }) {
 
     const [workerList, setWorkerList] = useState([])
 
@@ -32,7 +32,11 @@ function ListOfWorkers() {
 
                     return (
 
-                        <Link className="worker-preview-card" key={position} to="worker-detail">
+                        <Link className="worker-preview-card"
+                            to="worker-detail"
+                            key={position}
+                            onClick={() => {setWorkerDetail(worker)}}
+                        >
 
                             {worker.name}
 
