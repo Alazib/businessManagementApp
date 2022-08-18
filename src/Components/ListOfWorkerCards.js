@@ -4,7 +4,7 @@ import WorkerPreviewCard from "./WorkerPreviewCard";
 
 
 
-function ListOfWorkers({ setWorkerDetail }) {
+function ListOfWorkers({ setWorkerDetail, workerState }) {
 
     const [workerList, setWorkerList] = useState([]);
 
@@ -14,23 +14,24 @@ function ListOfWorkers({ setWorkerDetail }) {
 
             name: "juan",
             email: "juan@gmail",
-            state: "active"
+            state: workerState
         },
         {
             name: "paco",
             email: "paco@gmail",
-            state: "active"
+            state: workerState
         },
         {
             name: "emiliano",
             email: "emiliano@gmail",
-            state: "non-active"
+            state: workerState
         }])
 
     }, []);
 
 
     return (
+        //¿Cómo aplico DRY en este Return?
         <>
             <div className="active-workers">ACTIVE WORKERS
                 {

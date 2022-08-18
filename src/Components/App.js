@@ -1,11 +1,15 @@
 import { Route, Routes } from 'react-router';
 import { useState } from "react";
-import ListOfWorkers from './ListOfWorkers';
+import ListOfWorkersCards from './ListOfWorkerCards';
 import WorkerDetail from './WorkerDetail';
 
 function App() {
 
   const [workerDetail, setWorkerDetail] = useState({});
+  const [workerState, setWorkerState] = useState("active")
+
+
+  console.log(workerDetail.name, workerDetail.state)
 
   
   return (
@@ -14,9 +18,9 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<ListOfWorkers setWorkerDetail={setWorkerDetail} />} />
+        <Route path='/' element={<ListOfWorkersCards setWorkerDetail={setWorkerDetail} workerState={workerState} />} />
 
-        <Route path='worker-detail' element={<WorkerDetail workerDetail={workerDetail}/>} />
+        <Route path='worker-detail' element={<WorkerDetail workerDetail={workerDetail} setWorkerState={setWorkerState}/>} />
 
       </Routes>
 
