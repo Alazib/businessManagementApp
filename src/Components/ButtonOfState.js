@@ -1,27 +1,28 @@
 
 
-function ButtonOfState({ workerDetail, setWorkerIsActive }) {
-
-    console.log(workerDetail.active)
+function ButtonOfState({ workerList, setWorkerList, workerDetail }) {
 
 
-    function WorkerStateSwitcher(workerDetail, setWorkerIsActive) {
+    function WorkerStateSwitcher(workerList, setWorkerList, workerDetail) {
 
-        console.log(workerDetail.name, workerDetail.active)
+        let workerListTemplate = workerList
+        
+        if(workerDetail.active === false) {
 
-        alert("All workers will change their states. Are you sure?")
+            workerListTemplate[2].active = true
+        }
 
-        workerDetail.active === true ? setWorkerIsActive(false) : setWorkerIsActive(true)
-
-
-        console.log(workerDetail.name, workerDetail.active)
-
+        setWorkerList(workerListTemplate)
+        
     }
+
+    console.log("SOY EL BOTÓN: ", workerDetail.name, workerDetail.active)
+
 
     return (
         <>
             <button
-                onClick={() => WorkerStateSwitcher(workerDetail, setWorkerIsActive)}>
+                onClick={() => WorkerStateSwitcher(workerList, setWorkerList, workerDetail)}>
                 SOY UN BOTÓN
             </button>
 

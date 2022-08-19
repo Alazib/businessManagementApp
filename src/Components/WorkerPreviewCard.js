@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import ButtonOfState from "./ButtonOfState"
 
-function WorkerPreviewCard({ setWorkerDetail, worker}) {
+function WorkerPreviewCard({ workerList, setWorkerList, worker, setWorkerDetail }) {
+
+    console.log("Soy WorkerPreviewCard", worker.name)
 
     return (
         <>
@@ -9,6 +12,10 @@ function WorkerPreviewCard({ setWorkerDetail, worker}) {
                 onClick={() => { setWorkerDetail(worker) }}
             >{worker.name}
             </Link>
+            <ButtonOfState
+                workerList={workerList}
+                setWorkerList={setWorkerList}
+                workerDetail={worker}/>
         </>
     )
 }

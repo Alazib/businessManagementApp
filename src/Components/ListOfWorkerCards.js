@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import WorkerPreviewCard from "./WorkerPreviewCard";
 
 
-
-
-function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
+function ListOfWorkers({ setWorkerDetail }) {
 
     const [workerList, setWorkerList] = useState([]);
 
@@ -12,22 +10,29 @@ function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
 
         setWorkerList([{
 
-            name: "juan",
-            email: "juan@gmail",
-            active: workerIsActive
+            name: "Agamenón",
+            email: "agamenón@gmail",
+            active: true
         },
         {
-            name: "paco",
-            email: "paco@gmail",
-            active: workerIsActive
+            name: "Aquiles",
+            email: "aquiles@gmail",
+            active: true
         },
         {
-            name: "emiliano",
-            email: "emiliano@gmail",
-            active: workerIsActive
+            name: "Ulises",
+            email: "ulises@gmail",
+            active: false
         }])
 
     }, []);
+    //¿Por qué cuando doy al botón en la pantalla no me vuelve a cargar el componente ListOfWorkers con Ulises ya en activo? 
+    //Si nos fijamos, al dar al botón, Ulises cambia a activo y el estado "workerList" se setea; sin embargo, 
+    // el componente no se re-renderiza y por tanto no aparece en activos. Si el estado "workerList" ha cambiado 
+    //¿por qué no se re-renderiza el componente "ListOfWorkers"?
+
+
+    console.log("SOY LISTOFWORKERCARDS:", workerList)
 
 
     return (
@@ -37,7 +42,7 @@ function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
                 {
                     workerList.map((worker, position) => {
 
-                        const WORKER_IS_ACTIVE = workerIsActive
+                        const WORKER_IS_ACTIVE = worker.active === true
 
                         return (
 
@@ -46,6 +51,8 @@ function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
                                     key={position}
                                     setWorkerDetail={setWorkerDetail}
                                     worker={worker}
+                                    workerList={workerList}
+                                    setWorkerList={setWorkerList}
                                 />}
                             </div>
 
@@ -61,8 +68,7 @@ function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
                 {
                     workerList.map((worker, position) => {
 
-                        const WORKER_IS_NOT_ACTIVE = !workerIsActive
-
+                        const WORKER_IS_NOT_ACTIVE = worker.active === false
                         return (
 
                             <div key={position}>
@@ -70,6 +76,8 @@ function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
                                     key={position}
                                     setWorkerDetail={setWorkerDetail}
                                     worker={worker}
+                                    workerList={workerList}
+                                    setWorkerList={setWorkerList}
                                 />}
                             </div>
 
