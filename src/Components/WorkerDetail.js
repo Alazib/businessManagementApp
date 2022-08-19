@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ButtonOfState from "./ButtonOfState"
 
-function WorkerDetail({ workerDetail, setWorkerState }) {
+function WorkerDetail({ workerDetail, setWorkerIsActive}) {
 
     return (
         <>
@@ -14,7 +14,7 @@ function WorkerDetail({ workerDetail, setWorkerState }) {
 
             <ButtonOfState
                 workerDetail={workerDetail}
-                setWorkerState={setWorkerState}
+                setWorkerIsActive={setWorkerIsActive}
             >SOY UN BOTÓN
             </ButtonOfState>
 

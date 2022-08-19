@@ -6,21 +6,20 @@ import WorkerDetail from './WorkerDetail';
 function App() {
 
   const [workerDetail, setWorkerDetail] = useState({});
-  const [workerState, setWorkerState] = useState("active")
 
+  const [workerIsActive, setWorkerIsActive] = useState(true);
 
-  console.log(workerDetail.name, workerDetail.state)
+  console.log(workerDetail.name, workerDetail.active)
 
-  
   return (
 
     <div className="App">
 
       <Routes>
 
-        <Route path='/' element={<ListOfWorkersCards setWorkerDetail={setWorkerDetail} workerState={workerState} />} />
+        <Route path='/' element={<ListOfWorkersCards setWorkerDetail={setWorkerDetail} workerIsActive={workerIsActive} />} />
 
-        <Route path='worker-detail' element={<WorkerDetail workerDetail={workerDetail} setWorkerState={setWorkerState}/>} />
+        <Route path='worker-detail' element={<WorkerDetail workerDetail={workerDetail} setWorkerIsActive={setWorkerIsActive}/>} />
 
       </Routes>
 

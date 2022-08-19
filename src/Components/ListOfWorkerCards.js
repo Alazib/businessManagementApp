@@ -4,7 +4,7 @@ import WorkerPreviewCard from "./WorkerPreviewCard";
 
 
 
-function ListOfWorkers({ setWorkerDetail, workerState }) {
+function ListOfWorkers({ setWorkerDetail, workerIsActive }) {
 
     const [workerList, setWorkerList] = useState([]);
 
@@ -14,17 +14,17 @@ function ListOfWorkers({ setWorkerDetail, workerState }) {
 
             name: "juan",
             email: "juan@gmail",
-            state: workerState
+            active: workerIsActive
         },
         {
             name: "paco",
             email: "paco@gmail",
-            state: workerState
+            active: workerIsActive
         },
         {
             name: "emiliano",
             email: "emiliano@gmail",
-            state: workerState
+            active: workerIsActive
         }])
 
     }, []);
@@ -37,7 +37,7 @@ function ListOfWorkers({ setWorkerDetail, workerState }) {
                 {
                     workerList.map((worker, position) => {
 
-                        const WORKER_IS_ACTIVE = worker.state === "active"
+                        const WORKER_IS_ACTIVE = workerIsActive
 
                         return (
 
@@ -61,7 +61,7 @@ function ListOfWorkers({ setWorkerDetail, workerState }) {
                 {
                     workerList.map((worker, position) => {
 
-                        const WORKER_IS_NOT_ACTIVE = worker.state === "non-active"
+                        const WORKER_IS_NOT_ACTIVE = !workerIsActive
 
                         return (
 

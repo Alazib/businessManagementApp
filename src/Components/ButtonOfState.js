@@ -1,22 +1,27 @@
 
 
-function ButtonOfState({ workerDetail, setWorkerState }) {
+function ButtonOfState({ workerDetail, setWorkerIsActive }) {
+
+    console.log(workerDetail.active)
 
 
-    function WorkerStateSwitcher(workerDetail, setWorkerState) {
+    function WorkerStateSwitcher(workerDetail, setWorkerIsActive) {
 
-        alert("All workers will change his state. Are you sure?")
+        console.log(workerDetail.name, workerDetail.active)
 
-        workerDetail.state === "active" ? setWorkerState("non-active")
-            :
-            setWorkerState("active")
+        alert("All workers will change their states. Are you sure?")
+
+        workerDetail.active === true ? setWorkerIsActive(false) : setWorkerIsActive(true)
+
+
+        console.log(workerDetail.name, workerDetail.active)
 
     }
 
     return (
         <>
             <button
-                onClick={() => WorkerStateSwitcher(workerDetail, setWorkerState)}>
+                onClick={() => WorkerStateSwitcher(workerDetail, setWorkerIsActive)}>
                 SOY UN BOTÓN
             </button>
 
