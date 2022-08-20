@@ -1,32 +1,25 @@
-
-
 function ButtonOfState({ workerList, setWorkerList, workerDetail }) {
+  function WorkerStateSwitcher(workerList, setWorkerList, workerDetail) {
+    let workerListTemplate = workerList;
 
-
-    function WorkerStateSwitcher(workerList, setWorkerList, workerDetail) {
-
-        let workerListTemplate = workerList
-        
-        if(workerDetail.active === false) {
-
-            workerListTemplate[2].active = true
-        }
-
-        setWorkerList(workerListTemplate)
-        
+    if (workerDetail.active === false) {
+      workerListTemplate[2].active = true;
     }
 
-    console.log("SOY EL BOTÓN: ", workerDetail.name, workerDetail.active)
+    setWorkerList(workerListTemplate);
+  }
 
-
-    return (
-        <>
-            <button
-                onClick={() => WorkerStateSwitcher(workerList, setWorkerList, workerDetail)}>
-                SOY UN BOTÓN
-            </button>
-
-        </>)
+  return (
+    <>
+      <button
+        onClick={() =>
+          WorkerStateSwitcher(workerList, setWorkerList, workerDetail)
+        }
+      >
+        SOY UN BOTÓN
+      </button>
+    </>
+  );
 }
 
-export default ButtonOfState
+export default ButtonOfState;
