@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import ButtonOfState from "./ButtonOfState"
+import DeleteWorker from "./Buttons/DeleteWorker";
+import SwitchWorkerState from "./Buttons/SwitchWorkerState"
 
-function WorkerDetail({ workerDetail}) {
+function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
     return (
         <>
@@ -12,10 +13,21 @@ function WorkerDetail({ workerDetail}) {
                 GO BACK
             </Link>
 
-            {/* <ButtonOfState
+            <SwitchWorkerState
+                workerList={workerList}
+                setWorkerList={setWorkerList}
                 workerDetail={workerDetail}
-            >SOY UN BOTÓN
-            </ButtonOfState> */}
+
+            />
+
+            <DeleteWorker
+                workerList={workerList}
+                workerDetail={workerDetail}
+                setWorkerList={setWorkerList}
+            />
+
+
+
 
         </>
     )

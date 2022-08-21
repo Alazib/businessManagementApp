@@ -1,27 +1,54 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes} from 'react-router';
 import { useState, useEffect } from "react";
-import ListOfWorkersCards from './ListOfWorkerCards';
+import WorkerList from './WorkerList';
 import WorkerDetail from './WorkerDetail';
 
 function App() {
 
+  const [workerList, setWorkerList] = useState([]);
+
   const [workerDetail, setWorkerDetail] = useState({});
 
-  console.log("SOY APP:", "nombre del trabajador ->", workerDetail.name, "estado del trabajador ->", workerDetail.active)
 
+  useEffect(() => {
 
+    setWorkerList([{
+
+      name: "Agamenón",
+      email: "agamenón@gmail",
+      active: true
+    },
+    {
+      name: "Aquiles",
+      email: "aquiles@gmail",
+      active: true
+    },
+    {
+      name: "Ulises",
+      email: "ulises@gmail",
+      active: false
+    }])
+
+  }, []);
+
+ 
   return (
 
     <div className="App">
 
       <Routes>
 
-        <Route path='/' element={<ListOfWorkersCards
+        <Route path='/' element={<WorkerList
+          workerList={workerList}
+          setWorkerList={setWorkerList}
           setWorkerDetail={setWorkerDetail}
+
 
         />} />
 
         <Route path='worker-detail' element={<WorkerDetail
+          workerList={workerList}
+          setWorkerList={setWorkerList}
           workerDetail={workerDetail} />} />
 
       </Routes>
