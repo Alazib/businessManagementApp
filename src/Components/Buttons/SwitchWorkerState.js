@@ -4,7 +4,7 @@ function SwitchWorkerState({ workerList, setWorkerList, workerDetail }) {
 
     function workerStateSwitcher(workerList, setWorkerList, workerDetail) {
 
-        let workerListTemplate = workerList.slice()
+        let workerListTemplate = workerList
 
         workerListTemplate.forEach((worker, position) => {
 
@@ -15,7 +15,7 @@ function SwitchWorkerState({ workerList, setWorkerList, workerDetail }) {
 
         })
 
-       setWorkerList(workerListTemplate)
+       setWorkerList([...workerListTemplate])
       
     }
 
