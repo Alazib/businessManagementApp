@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import DeleteWorker from "./Buttons/DeleteWorker";
 import SwitchWorkerState from "./Buttons/SwitchWorkerState"
 
 function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
-    console.log(workerDetail)
-
-  
-
+    const [update, setUpdate] = useState(false)
 
     return (
         <>
-            <div>{workerDetail.email}</div>
+            <div>{workerDetail.name}</div>
 
             <Link
                 to={"/"}>
@@ -30,15 +28,20 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
                 setWorkerList={setWorkerList}
             />
 
-            <form>
+            <button onClick={() => { setUpdate(!update) }}>
+                Update worker info
+            </button>
+
+            {update && <form>
 
                 <p>
-                    <label>Fist name</label><br/>
+                    <label>Fist name</label><br />
                     <input
                         type="text"
                         name="first_name"
                         placeholder={workerDetail.name}
                         onChange={(event) => {
+
                             let workerListTemplate = workerList
 
                             workerListTemplate.forEach((worker, position) => {
@@ -56,7 +59,7 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
                     />
                 </p>
 
-            </form>
+            </form>}
 
 
 

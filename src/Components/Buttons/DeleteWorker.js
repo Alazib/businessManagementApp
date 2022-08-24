@@ -17,7 +17,7 @@ function DeleteWorker({ workerList, setWorkerList, workerDetail }) {
     return (
 
         <button onClick={() => { deleteWorkerFromList(workerList, setWorkerList, workerDetail) }}>
-            BORRAR TRABAJADOR
+            Delete Worker
         </button>
     )
 }

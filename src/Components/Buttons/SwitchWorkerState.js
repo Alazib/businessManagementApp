@@ -24,7 +24,7 @@ function SwitchWorkerState({ workerList, setWorkerList, workerDetail }) {
         <>
             <button
                 onClick={() => workerStateSwitcher(workerList, setWorkerList, workerDetail)}>
-                ACTIVO/NO-ACTIVO
+                Active/Non-active
             </button>
 
         </>)
