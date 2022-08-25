@@ -1,26 +1,36 @@
 import { Link } from "react-router-dom"
 import DeleteWorker from "./Buttons/DeleteWorker"
 import SwitchWorkerState from "./Buttons/SwitchWorkerState"
+import "../styles/WorkerPreviewCard.css"
 
 function WorkerPreviewCard({ workerList, setWorkerList, worker, setWorkerDetail }) {
 
     return (
         <>
-            <Link className="worker-preview-card"
+            <Link 
                 to="worker-detail"
                 onClick={() => { setWorkerDetail(worker) }}
-            >{worker.name}
+            ><div className="image">
+                    <img
+                        src={worker.photo} alt="avatar">
+
+                    </img>
+                </div>
+                {<b>{worker.name}</b>}
             </Link>
 
-            <SwitchWorkerState
-                workerList={workerList}
-                setWorkerList={setWorkerList}
-                workerDetail={worker} />
+            <div className="Buttons">
 
-            <DeleteWorker
-                workerList={workerList}
-                setWorkerList={setWorkerList}
-                workerDetail={worker}/>
+                <SwitchWorkerState
+                    workerList={workerList}
+                    setWorkerList={setWorkerList}
+                    workerDetail={worker} />
+
+                <DeleteWorker
+                    workerList={workerList}
+                    setWorkerList={setWorkerList}
+                    workerDetail={worker} />
+            </div>
 
         </>
     )
