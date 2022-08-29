@@ -1,17 +1,58 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import DeleteWorker from "./Buttons/DeleteWorker";
-import SwitchWorkerState from "./Buttons/SwitchWorkerState"
 import "../styles/WorkerDetail.css"
+import Button from "./Buttons/Button";
 
 
 
-function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
+function WorkerDetail({
+    workerList,
+    setWorkerList,
+    workerDetail
+}) {
 
     const [update, setUpdate] = useState(false)
 
     const { photo, name, age, phoneNumber, email, address, active } = workerDetail
 
+
+    function workerStateSwitcher() {
+
+        let workerListTemplate = workerList
+
+        workerListTemplate.forEach((worker, position) => {
+
+            if (worker.name === workerDetail.name) {
+
+                workerListTemplate[position].active = !workerListTemplate[position].active
+            }
+
+        })
+
+        setWorkerList([...workerListTemplate])
+
+    }
+    function deleteWorkerFromList() {
+
+        let newWorkerList = workerList.filter((worker) => {
+
+            return !(workerDetail.name === worker.name)
+        })
+
+        setWorkerList(newWorkerList)
+    }
+    function showUpdateForm() {
+
+        setUpdate(!update)
+    }
+    function saveWorkerUpdate() {
+
+        // setWorkerList()
+        // ¿?
+
+        setUpdate(!update)
+
+    }
 
     const workerIndexCard = <div className="name-age-number-email-adress-state">
         <div><b>Name:</b><br></br>{name}</div>
@@ -24,7 +65,7 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
         <br></br>
         <div><b>Address:</b><br></br>{address}</div>
         <br></br>
-        <div><b>Worker state:</b><br></br>{active? "Active" : "Non active"}</div>
+        <div><b>Worker state:</b><br></br>{active ? "Active" : "Non active"}</div>
         <br></br>
     </div>
 
@@ -42,17 +83,17 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
                     console.log("LISTA antes del forEach", workerList)
                     //¿CÓMO ES POSIBLE QUE CAMBIE workerList? 
 
-                    // Lo PRIMERO: en el caso de que workerList tuviese que cambiar, el cambio se produce más abajo, en el forEach 
+                    // Lo PRIMERO: en el caso de que workerList tuviese que cambiar, la función que lo cambia está más abajo, en el forEach 
                     // ¿cómo puede cambiar entonces aquí, tan pronto?
 
                     // Lo SEGUNDO: la workerList NO tiene que cambiar, sino workerListTemplate. Abajo creo workerListTemplate de tal manera
                     // que se haga una copia total (que cambien las direcciones en memoria de ambas variables), evitando así que al cambiar
                     // una variable cambie también la otra.
 
-                    // Lo TERCERO: dejando de lado que workerList no tiene que cambiar ¿como puede cambiar sin usar el setWorkerList si no
+                    // Lo TERCERO: dejando de lado que workerList no tiene que cambiar ¿como puede cambiar sin usar el setWorkerList sino
                     // tan solo por asignación de un nuevo valor? Entonces ¿para qué estan los setters del useState?
 
-                    const workerListTemplate = [...workerList]
+                    let workerListTemplate = [...workerList]
 
                     console.log("MOLDE antes del forEach", workerListTemplate)
 
@@ -62,10 +103,13 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
                             workerListTemplate[position].name = event.target.value
                         }
+
                     })
 
                     console.log("LISTA después del forEach", workerList)
                     console.log("MOLDE después del forEach", workerListTemplate)
+
+
 
                 }}
             />
@@ -169,11 +213,10 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
     return (
 
-
         <>
-            <div className="worker-detail-and-buttons">
+            <div className="worker-detail-form-and-buttons">
 
-                <div className="worker-detail">
+                <div className="worker-detail-form">
 
                     <div><img src={photo} alt="worker"></img></div>
 
@@ -187,31 +230,23 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
                 <div className="buttons">
 
-                    <SwitchWorkerState
-                        workerList={workerList}
-                        setWorkerList={setWorkerList}
-                        workerDetail={workerDetail}
+                    <Button
+                        onClick={workerStateSwitcher}
+                        label="Active/Inactive"
                     />
 
-                    {!update && <button onClick={() => { setUpdate(!update) }}>
-                        Update worker info
-                    </button>}
+                    {!update && <Button
+                        onClick={showUpdateForm}
+                        label="Update worker info"
+                    />}
 
-                    {update && <button onClick={() => {
+                    {update && <Button
+                        onClick={saveWorkerUpdate}
+                        label="Save worker update" />}
 
-                        setWorkerList()
-                        //¿?
-
-                        setUpdate(!update)
-                    }}>
-
-                        Save worker info
-                    </button>}
-
-                    <DeleteWorker
-                        workerList={workerList}
-                        workerDetail={workerDetail}
-                        setWorkerList={setWorkerList}
+                    <Button
+                        onClick={deleteWorkerFromList}
+                        label="Delete worker"
                     />
 
                     <div className="go-back">
@@ -223,11 +258,10 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
                     </div>
 
-
-
                 </div>
 
             </div>
+
 
 
         </>

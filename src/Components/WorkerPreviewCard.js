@@ -3,7 +3,12 @@ import DeleteWorker from "./Buttons/DeleteWorker"
 import SwitchWorkerState from "./Buttons/SwitchWorkerState"
 import "../styles/WorkerPreviewCard.css"
 
-function WorkerPreviewCard({ workerList, setWorkerList, worker, setWorkerDetail }) {
+function WorkerPreviewCard({
+    workerList,
+    setWorkerList,
+    worker,
+    setWorkerDetail
+}) {
 
     return (
 

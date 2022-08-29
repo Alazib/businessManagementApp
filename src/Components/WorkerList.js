@@ -2,7 +2,11 @@ import WorkerPreviewCard from "./WorkerPreviewCard";
 import "../styles/WorkerList.css"
 
 
-function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
+function WorkerList({
+    workerList,
+    setWorkerList,
+    setWorkerDetail
+}) {
 
     const numberOfActiveWorkers = workerList.filter((worker) => {
         return worker.active
