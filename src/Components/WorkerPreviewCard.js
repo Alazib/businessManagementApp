@@ -6,8 +6,10 @@ import "../styles/WorkerPreviewCard.css"
 function WorkerPreviewCard({ workerList, setWorkerList, worker, setWorkerDetail }) {
 
     return (
-        <>
-            <Link 
+
+        <div className="worker-preview-card">
+
+            <Link
                 to="worker-detail"
                 onClick={() => { setWorkerDetail(worker) }}
             ><div className="image">
@@ -32,7 +34,9 @@ function WorkerPreviewCard({ workerList, setWorkerList, worker, setWorkerDetail 
                     workerDetail={worker} />
             </div>
 
-        </>
+        </div>
+
+
     )
 }
 

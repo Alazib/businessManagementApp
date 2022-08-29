@@ -4,11 +4,11 @@ import "../styles/WorkerList.css"
 
 function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
 
-    const activeWorkers = workerList.filter((worker) => {
+    const numberOfActiveWorkers = workerList.filter((worker) => {
         return worker.active
     })
 
-    const nonActiveWorkers = workerList.filter((worker) => {
+    const numberOfNonActiveWorkers = workerList.filter((worker) => {
         return !worker.active
     })
 
@@ -19,7 +19,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
 
             <div className="active-workers">
 
-                <h1>{activeWorkers.length} ACTIVE WORKERS</h1>
+                <h1>{numberOfActiveWorkers.length} ACTIVE WORKERS</h1>
                 {
                     workerList.map((worker, position) => {
 
@@ -45,7 +45,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
 
             <div className="non-active-workers">
 
-                <h1>{nonActiveWorkers.length} NON-ACTIVE WORKERS</h1>
+                <h1>{numberOfNonActiveWorkers.length} NON-ACTIVE WORKERS</h1>
                 {
                     workerList.map((worker, position) => {
 

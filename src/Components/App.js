@@ -37,8 +37,6 @@ function App() {
       ORIGINAL_WORKER_LIST.push(worker)
     }
 
-    console.log(ORIGINAL_WORKER_LIST)
-
     return ORIGINAL_WORKER_LIST
 
   }
@@ -49,6 +47,8 @@ function App() {
     setWorkerList(workerListGenerator())
 
   }, []);
+
+  console.log(workerList)
 
 
   return (
