@@ -24,7 +24,7 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
         <br></br>
         <div><b>Address:</b><br></br>{address}</div>
         <br></br>
-        <div><b>Worker state:</b><br></br>{active === true ? "Active" : "Non active"}</div>
+        <div><b>Worker state:</b><br></br>{active? "Active" : "Non active"}</div>
         <br></br>
     </div>
 
@@ -40,7 +40,7 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
 
                     console.log("LISTA antes del forEach", workerList)
-                    //¿Cómo es posible que cambie la workerList? 
+                    //¿CÓMO ES POSIBLE QUE CAMBIE workerList? 
 
                     // Lo PRIMERO: en el caso de que workerList tuviese que cambiar, el cambio se produce más abajo, en el forEach 
                     // ¿cómo puede cambiar entonces aquí, tan pronto?
@@ -166,12 +166,6 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
     </form>
 
-    function saveWokerListTemplateValue(workerListTemplate) {
-
-        return workerListTemplate
-
-    }
-
 
     return (
 
@@ -205,7 +199,8 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
 
                     {update && <button onClick={() => {
 
-                        setWorkerList(saveWokerListTemplateValue)
+                        setWorkerList()
+                        //¿?
 
                         setUpdate(!update)
                     }}>

@@ -16,35 +16,48 @@ function App() {
 
     const MIN_NUMBER_OF_WORKERS = 6
     const MAX_NUMBER_OF_WORKERS = 20
-    const ORIGINAL_WORKER_LIST = []
-    let NUMBER_OF_TOTAL_WORKERS = randomNumberGenerator(MIN_NUMBER_OF_WORKERS, MAX_NUMBER_OF_WORKERS)
+    let NUMBER_OF_TOTAL_WORKERS = randomNumberGenerator(
+      MIN_NUMBER_OF_WORKERS,
+      MAX_NUMBER_OF_WORKERS
+    )
+
+    const originalWorkerList = []
+    const { name, mersenne, address, phone, datatype } = faker
 
     for (let i = 0; i < NUMBER_OF_TOTAL_WORKERS; i++) {
+
+      const fakeName = name.fullName()
+      const fakeEmail = `${fakeName}@gmail.com`
+      const fakeAddress = `${address.cityName()}, ${address.streetAddress()}, building ${mersenne.rand(
+        0,
+        200
+      )}`
 
       const worker = {
 
         photo: avatar.generateRandomAvatar(),
-        name: faker.name.fullName(),
+        name: fakeName,
+        email: fakeEmail,
         age: faker.mersenne.rand(18, 65),
-        address: `${faker.address.cityName()}, ${faker.address.streetAddress()}, building ${faker.mersenne.rand(0, 200)}`,
-        phoneNumber: faker.phone.number("6## ## ## ##"),
-        active: faker.datatype.boolean()
+        address: fakeAddress,
+        phoneNumber: phone.number("6## ## ## ##"),
+        active: datatype.boolean()
 
       }
 
-      worker.email = `${worker.name}@gmail.com`
-
-      ORIGINAL_WORKER_LIST.push(worker)
+      originalWorkerList.push(worker)
     }
 
-    return ORIGINAL_WORKER_LIST
+    return originalWorkerList
 
   }
 
 
   useEffect(() => {
 
-    setWorkerList(workerListGenerator())
+    const listOfWorkers = workerListGenerator()
+
+    setWorkerList(listOfWorkers)
 
   }, []);
 
