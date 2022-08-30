@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState} from "react";
+import { useState } from "react";
 import "../styles/WorkerDetail.css"
 import Button from "./Buttons/Button";
+import { Redirect } from "@reach/router";
 
 
 function WorkerDetail({
@@ -52,7 +53,6 @@ function WorkerDetail({
         setUpdate(!update)
 
     }
-
 
     const workerIndexCard = <div className="name-age-number-email-adress-state">
         <div><b>Name:</b><br></br>{name}</div>
@@ -245,14 +245,15 @@ function WorkerDetail({
                         label="Save worker update" />}
 
                     <Button
-                        onClick={deleteWorkerFromList}
+                        onClick={deleteWorkerFromList
+                        }
                         label="Delete worker"
                     />
 
                     <div className="go-back">
 
                         <Link
-                            to={"/"}>
+                            to={"/worker-list"}>
                             Back to list
                         </Link>
 

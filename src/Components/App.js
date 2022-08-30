@@ -5,6 +5,7 @@ import { avatar } from '../avatarGenerator';
 import randomNumberGenerator from '../randomNumberGenerator';
 import WorkerList from './WorkerList';
 import WorkerDetail from './WorkerDetail';
+import MainMenu from './MainMenu';
 
 function App() {
 
@@ -67,23 +68,25 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<WorkerList
+        <Route path='/' element={<MainMenu
+        />} />
+
+        <Route path ='worker-list' element={<WorkerList
           workerList={workerList}
           setWorkerList={setWorkerList}
           setWorkerDetail={setWorkerDetail}
-
-
         />} />
 
-        <Route path='worker-detail' element={<WorkerDetail
+        <Route path='worker-list/worker-detail' element={<WorkerDetail
           workerList={workerList}
           setWorkerList={setWorkerList}
-          workerDetail={workerDetail} />} />
+          workerDetail={workerDetail}
+        />} />
 
       </Routes>
 
 
-    </div>
+    </div >
   );
 }
 

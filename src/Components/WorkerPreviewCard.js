@@ -43,6 +43,7 @@ function WorkerPreviewCard({
 
             <Link
                 to="worker-detail"
+                
                 onClick={() => { setWorkerDetail(worker) }}
             ><div className="image">
                     <img
