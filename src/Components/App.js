@@ -52,7 +52,6 @@ function App() {
 
   }
 
-
   useEffect(() => {
 
     const listOfWorkers = workerListGenerator()
@@ -60,8 +59,6 @@ function App() {
     setWorkerList(listOfWorkers)
 
   }, []);
-
-  console.log(workerList)
 
 
   return (

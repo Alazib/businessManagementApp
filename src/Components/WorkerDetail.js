@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState} from "react";
 import "../styles/WorkerDetail.css"
 import Button from "./Buttons/Button";
-
 
 
 function WorkerDetail({
@@ -18,7 +17,7 @@ function WorkerDetail({
 
     function workerStateSwitcher() {
 
-        let workerListTemplate = workerList
+        let workerListTemplate = [...workerList]
 
         workerListTemplate.forEach((worker, position) => {
 
@@ -29,7 +28,7 @@ function WorkerDetail({
 
         })
 
-        setWorkerList([...workerListTemplate])
+        setWorkerList(workerListTemplate)
 
     }
     function deleteWorkerFromList() {
@@ -53,6 +52,7 @@ function WorkerDetail({
         setUpdate(!update)
 
     }
+
 
     const workerIndexCard = <div className="name-age-number-email-adress-state">
         <div><b>Name:</b><br></br>{name}</div>

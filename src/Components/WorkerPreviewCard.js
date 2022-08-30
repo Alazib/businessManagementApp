@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import DeleteWorker from "./Buttons/DeleteWorker"
-import SwitchWorkerState from "./Buttons/SwitchWorkerState"
+import Button from "./Buttons/Button"
 import "../styles/WorkerPreviewCard.css"
 
 function WorkerPreviewCard({
@@ -9,6 +8,34 @@ function WorkerPreviewCard({
     worker,
     setWorkerDetail
 }) {
+
+    function deleteWorkerFromList() {
+
+        let newWorkerList = workerList.filter((employee) => {
+
+            return !(employee.name === worker.name)
+        })
+
+        setWorkerList(newWorkerList)
+
+    }
+
+    function workerStateSwitcher() {
+
+        let workerListTemplate = [...workerList]
+
+        workerListTemplate.forEach((employee, position) => {
+
+            if (employee.name === worker.name) {
+
+                workerListTemplate[position].active = !workerListTemplate[position].active
+            }
+
+        })
+
+        setWorkerList(workerListTemplate)
+
+    }
 
     return (
 
@@ -28,15 +55,16 @@ function WorkerPreviewCard({
 
             <div className="Buttons">
 
-                <SwitchWorkerState
-                    workerList={workerList}
-                    setWorkerList={setWorkerList}
-                    workerDetail={worker} />
 
-                <DeleteWorker
-                    workerList={workerList}
-                    setWorkerList={setWorkerList}
-                    workerDetail={worker} />
+                <Button
+                    onClick={workerStateSwitcher}
+                    label="Active/Inactive"
+                />
+
+                <Button
+                    onClick={deleteWorkerFromList}
+                    label="Delete worker"
+                />
             </div>
 
         </div>
