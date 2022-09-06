@@ -7,9 +7,11 @@ function WorkerPreviewCard({
   worker,
   setWorkerDetail,
 }) {
+  const { id, photo, name } = worker;
+
   function deleteWorkerFromList() {
-    let newWorkerList = workerList.filter((employee) => {
-      return !(employee.name === worker.name);
+    let newWorkerList = workerList.filter((worker) => {
+      return !(worker.id === id);
     });
 
     setWorkerList(newWorkerList);
@@ -18,8 +20,8 @@ function WorkerPreviewCard({
   function workerStateSwitcher() {
     let workerListTemplate = [...workerList];
 
-    workerListTemplate.forEach((employee, position) => {
-      if (employee.name === worker.name) {
+    workerListTemplate.forEach((worker, position) => {
+      if (worker.id === id) {
         workerListTemplate[position].active =
           !workerListTemplate[position].active;
       }
@@ -37,9 +39,9 @@ function WorkerPreviewCard({
         }}
       >
         <div className="image">
-          <img src={worker.photo} alt="avatar"></img>
+          <img src={photo} alt="avatar"></img>
         </div>
-        {<b>{worker.name}</b>}
+        {<b>{name}</b>}
       </Link>
 
       <div className="Buttons">

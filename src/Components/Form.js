@@ -5,7 +5,7 @@ function Form({ workerDetail, workerList, setWorkerList }) {
     ...workerDetail,
   });
 
-  const { id, name } = workerDetail;
+  const { id, name, email, age, address, phoneNumber } = workerDetail;
 
   function handleInputChange(event) {
     setData({
@@ -43,15 +43,42 @@ function Form({ workerDetail, workerList, setWorkerList }) {
             onChange={handleInputChange}
           ></input>
         </div>
-        {/* <div className="col-md-3">
+        <div className="col-md-3">
           <input
             className="form-control"
             type="text"
-            placeholder="new email"
+            placeholder={age}
+            name="age"
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <div className="col-md-3">
+          <input
+            className="form-control"
+            type="text"
+            placeholder={email}
             name="email"
             onChange={handleInputChange}
           ></input>
-        </div> */}
+        </div>
+        <div className="col-md-3">
+          <input
+            className="form-control"
+            type="text"
+            placeholder={phoneNumber}
+            name="phoneNumber"
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <div className="col-md-3">
+          <input
+            className="form-control"
+            type="text"
+            placeholder={address}
+            name="address"
+            onChange={handleInputChange}
+          ></input>
+        </div>
         <div className="col-md-3">
           <button className="btn btn-primary" type="submit">
             GUARDAR
