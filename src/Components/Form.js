@@ -1,6 +1,13 @@
 import { Fragment, useState } from "react";
 
-function Form({ workerDetail, workerList, setWorkerList }) {
+function Form({
+  workerDetail,
+  setWorkerDetail,
+  workerList,
+  setWorkerList,
+  update,
+  setUpdate,
+}) {
   const [data, setData] = useState({
     ...workerDetail,
   });
@@ -16,11 +23,12 @@ function Form({ workerDetail, workerList, setWorkerList }) {
 
   function sendInputData(event) {
     event.preventDefault();
-    const newData = overwriteData();
-    setWorkerList(newData);
+    const newWorkerList = workerListTemplate();
+    setWorkerList(newWorkerList);
+    newWorkerDetailandCloseForm();
   }
 
-  function overwriteData() {
+  function workerListTemplate() {
     const workerListTemplate = [...workerList];
 
     workerListTemplate.forEach((worker, position) => {
@@ -29,6 +37,11 @@ function Form({ workerDetail, workerList, setWorkerList }) {
       }
     });
     return workerListTemplate;
+  }
+
+  function newWorkerDetailandCloseForm() {
+    setWorkerDetail(data);
+    setUpdate(!update);
   }
 
   return (
@@ -81,7 +94,7 @@ function Form({ workerDetail, workerList, setWorkerList }) {
         </div>
         <div className="col-md-3">
           <button className="btn btn-primary" type="submit">
-            GUARDAR
+            SAVE
           </button>
         </div>
       </form>

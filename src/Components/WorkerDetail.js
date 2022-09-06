@@ -3,55 +3,14 @@ import { useState } from "react";
 import Form from "./Form";
 import Button from "./Button";
 import "../styles/WorkerDetail.css";
+import WorkerIndexCard from "./WorkerIndexCar";
 
-const WorkerIndexCard = ({ workerDetail }) => {
-  const { name, age, phoneNumber, email, address, active } = workerDetail;
-
-  return (
-    <>
-      <div className="name-age-number-email-adress-state">
-        <div>
-          <b>Name:</b>
-          <br></br>
-          {name}
-        </div>
-        <br></br>
-        <div>
-          <b>Age:</b>
-          <br></br>
-          {age}
-        </div>
-        <br></br>
-        <div>
-          <b>Phone number:</b>
-          <br></br>
-          {phoneNumber}
-        </div>{" "}
-        <br></br>
-        <div>
-          <b>Email:</b>
-          <br></br>
-          {email}
-        </div>
-        <br></br>
-        <div>
-          <b>Address:</b>
-          <br></br>
-          {address}
-        </div>
-        <br></br>
-        <div>
-          <b>Worker state:</b>
-          <br></br>
-          {active ? "Active" : "Non active"}
-        </div>
-        <br></br>
-      </div>
-    </>
-  );
-};
-
-function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
+function WorkerDetail({
+  workerList,
+  setWorkerList,
+  workerDetail,
+  setWorkerDetail,
+}) {
   const [update, setUpdate] = useState(false);
 
   const { id, photo } = workerDetail;
@@ -63,6 +22,7 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
       if (worker.id === id) {
         workerListTemplate[position].active =
           !workerListTemplate[position].active;
+        setWorkerDetail(workerListTemplate[position]);
       }
     });
 
@@ -91,8 +51,11 @@ function WorkerDetail({ workerList, setWorkerList, workerDetail }) {
           {update && (
             <Form
               workerDetail={workerDetail}
+              setWorkerDetail={setWorkerDetail}
               workerList={workerList}
               setWorkerList={setWorkerList}
+              update={update}
+              setUpdate={setUpdate}
             />
           )}
         </div>

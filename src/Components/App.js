@@ -53,7 +53,7 @@ function App() {
     setWorkerList(listOfWorkers);
   }, []);
 
-  console.log(workerList);
+  console.log(workerDetail);
 
   return (
     <div className="App">
@@ -78,6 +78,7 @@ function App() {
               workerList={workerList}
               setWorkerList={setWorkerList}
               workerDetail={workerDetail}
+              setWorkerDetail={setWorkerDetail}
             />
           }
         />
