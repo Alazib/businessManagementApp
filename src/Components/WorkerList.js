@@ -15,7 +15,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
     <>
       <div className="worker-list">
         <div className="active-workers">
-          <h1>{numberOfActiveWorkers.length} ACTIVE WORKERS</h1>
+          <h2>{numberOfActiveWorkers.length} ACTIVE WORKERS</h2>
           {workerList.map((worker, position) => {
             const WORKER_IS_ACTIVE = worker.active;
 
@@ -36,7 +36,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
         </div>
 
         <div className="non-active-workers">
-          <h1>{numberOfNonActiveWorkers.length} NON-ACTIVE WORKERS</h1>
+          <h2>{numberOfNonActiveWorkers.length} NON-ACTIVE WORKERS</h2>
           {workerList.map((worker, position) => {
             const WORKER_IS_NOT_ACTIVE = !worker.active;
             return (
@@ -55,7 +55,11 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
           })}
         </div>
 
-        <Link to="/">GO TO MAIN MENU</Link>
+        <div className="link-to-main-menu">
+          <Link to="/">
+            <h5>MAIN MENU</h5>
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -56,7 +56,7 @@ function App() {
   console.log(workerDetail);
 
   return (
-    <div className="App">
+    <div className="app">
       <Routes>
         <Route path="/" element={<MainMenu />} />
 

@@ -1,0 +1,15 @@
+.worker-preview-card-and-buttons {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.worker-preview-card-name {
+  margin: 5px;
+}
+
+.preview-card-buttons {
+  margin-top: 10px;
+}
+.preview-card-buttons > * {
+  margin-right: 5px;
+}

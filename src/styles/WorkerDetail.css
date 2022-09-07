@@ -1,6 +1,7 @@
 .worker-detail-form-and-buttons {
   display: flex;
   justify-content: space-around;
+  background-color: rgb(255, 251, 209);
 }
 
 .buttons {

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import "../styles/WorkerPreviewCard.css";
 
 function WorkerPreviewCard({
   workerList,
@@ -31,20 +32,22 @@ function WorkerPreviewCard({
   }
 
   return (
-    <div className="worker-preview-card">
-      <Link
-        to="worker-detail"
-        onClick={() => {
-          setWorkerDetail(worker);
-        }}
-      >
-        <div className="image">
-          <img src={photo} alt="avatar"></img>
-        </div>
-        {<b>{name}</b>}
-      </Link>
+    <div className="worker-preview-card-and-buttons">
+      <div className="worker-preview-card">
+        <Link
+          to="worker-detail"
+          onClick={() => {
+            setWorkerDetail(worker);
+          }}
+        >
+          <div className="worker-preview-card-image">
+            <img src={photo} alt="avatar" width="180px" height="195px"></img>
+          </div>
+          <h5 className="worker-preview-card-name">{name}</h5>
+        </Link>
+      </div>
 
-      <div className="Buttons">
+      <div className="preview-card-buttons">
         <Button onClick={workerStateSwitcher} label="Active/Inactive" />
         <Button onClick={deleteWorkerFromList} label="Delete worker" />
       </div>
