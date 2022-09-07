@@ -41,6 +41,18 @@ function WorkerDetail({
 
   return (
     <>
+      <header className="header-worker-detail">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/worker-list">Workers</Link>
+            </li>
+            <li>
+              <Link to="/">Main Menu</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <div className="worker-detail-form-and-buttons">
         <div className="worker-detail-form">
           <div>
@@ -68,10 +80,6 @@ function WorkerDetail({
           )}
 
           <Button onClick={deleteWorkerFromList} label="Delete worker" />
-
-          <div className="go-back">
-            <Link to={"/worker-list"}>Back to list</Link>
-          </div>
         </div>
       </div>
     </>

@@ -1,7 +1,33 @@
+.header-worker-detail > nav > ul {
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-worker-detail {
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.header-worker-detail > nav > ul > li > a {
+  color: white;
+  display: block;
+  padding: 20px;
+  margin-right: 200px;
+}
+
+.header-worker-detail nav > ul > li > a:hover {
+  background-color: green;
+}
+
 .worker-detail-form-and-buttons {
   display: flex;
   justify-content: space-around;
   background-color: rgb(255, 251, 209);
+  padding-top: 80px;
 }
 
 .buttons {
@@ -14,19 +40,11 @@
   margin-top: 20px;
 }
 
-.go-back {
-  border: thin solid black;
-  text-align: center;
-  margin-top: 50px;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
 p {
   margin-top: 20px;
+}
+a {
+  text-decoration: none;
 }
 
 input[placeholder] {
