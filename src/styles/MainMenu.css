@@ -1,0 +1,33 @@
+.nav-links > ul {
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header-nav-links {
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
+.nav-links > ul > li > a {
+  display: block;
+  padding: 20px;
+  color: white;
+}
+
+.nav-links > ul > li > a:hover {
+  background-color: green;
+}
+
+.presentation {
+  margin-bottom: 20px;
+  padding-top: 100px;
+}
+
+.presentation-text {
+  width: 80%;
+  margin: auto;
+}
