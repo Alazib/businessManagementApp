@@ -35,21 +35,29 @@ function WorkerPreviewCard({
     <div className="worker-preview-card-and-buttons">
       <div className="worker-preview-card">
         <Link
-          to="worker-detail"
+          to="/worker-detail"
           onClick={() => {
             setWorkerDetail(worker);
           }}
         >
           <div className="worker-preview-card-image">
-            <img src={photo} alt="avatar" width="180px" height="195px"></img>
+            <img src={photo} alt="avatar" width="120px" height="149px"></img>
           </div>
           <h5 className="worker-preview-card-name">{name}</h5>
         </Link>
       </div>
 
       <div className="preview-card-buttons">
-        <Button onClick={workerStateSwitcher} label="Active/Inactive" />
-        <Button onClick={deleteWorkerFromList} label="Delete worker" />
+        <Button
+          onClick={workerStateSwitcher}
+          label="Active/Inactive"
+          size="small"
+        />
+        <Button
+          onClick={deleteWorkerFromList}
+          label="Delete worker"
+          size="small"
+        />
       </div>
     </div>
   );

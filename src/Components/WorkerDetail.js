@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import Form from "./Form";
 import Button from "./Button";
 import "../styles/WorkerDetail.css";
-import WorkerIndexCard from "./WorkerIndexCar";
+import WorkerIndexCard from "./WorkerIndexCard";
+import { useNavigate } from "react-router-dom";
 
 function WorkerDetail({
   workerList,
@@ -28,31 +28,22 @@ function WorkerDetail({
 
     setWorkerList(workerListTemplate);
   }
-  function deleteWorkerFromList() {
+
+  function deleteWorkerAndBackToList() {
     let newWorkerList = workerList.filter((worker) => {
       return !(id === worker.id);
     });
-
     setWorkerList(newWorkerList);
+    navigate("/worker-list");
   }
+  const navigate = useNavigate();
+
   function showUpdateForm() {
     setUpdate(!update);
   }
 
   return (
     <>
-      <header className="header-worker-detail">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/worker-list">Workers</Link>
-            </li>
-            <li>
-              <Link to="/">Main Menu</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
       <div className="worker-detail-form-and-buttons">
         <div className="worker-detail-form">
           <div>
@@ -72,15 +63,15 @@ function WorkerDetail({
           )}
         </div>
 
-        <div className="buttons">
-          <Button onClick={workerStateSwitcher} label="Active/Inactive" />
+        {!update && (
+          <div className="buttons">
+            <Button onClick={workerStateSwitcher} label="Active/Inactive" />
 
-          {!update && (
             <Button onClick={showUpdateForm} label="Update worker info" />
-          )}
 
-          <Button onClick={deleteWorkerFromList} label="Delete worker" />
-        </div>
+            <Button onClick={deleteWorkerAndBackToList} label="Delete worker" />
+          </div>
+        )}
       </div>
     </>
   );

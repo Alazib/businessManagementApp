@@ -13,15 +13,6 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
 
   return (
     <>
-      <header className="header-worker-list">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Main Menu</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
       <div className="worker-list">
         <div className="active-workers">
           <h2>{numberOfActiveWorkers.length} ACTIVE WORKERS</h2>

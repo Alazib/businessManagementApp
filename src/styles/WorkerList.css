@@ -1,28 +1,3 @@
-.header-worker-list > nav > ul {
-  margin: 0px;
-  list-style: none;
-  display: flex;
-  justify-content: end;
-}
-
-.header-worker-list {
-  background: rgba(0, 0, 0, 0.9);
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-}
-
-.header-worker-list > nav > ul > li > a {
-  color: white;
-  display: block;
-  padding: 20px;
-  margin-right: 200px;
-}
-
-.header-worker-list > nav > ul > li > a:hover {
-  background-color: green;
-}
-
 .worker-list {
   display: flex;
   justify-content: space-around;

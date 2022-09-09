@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import Button from "./Button";
 
 function Form({
   workerDetail,
@@ -25,7 +26,7 @@ function Form({
     event.preventDefault();
     const newWorkerList = workerListTemplate();
     setWorkerList(newWorkerList);
-    newWorkerDetailandCloseForm();
+    saveUpdatingandCloseForm();
   }
 
   function workerListTemplate() {
@@ -39,63 +40,61 @@ function Form({
     return workerListTemplate;
   }
 
-  function newWorkerDetailandCloseForm() {
+  function saveUpdatingandCloseForm() {
     setWorkerDetail(data);
+    setUpdate(!update);
+  }
+
+  function cancelUpdatingAndCloseForm() {
     setUpdate(!update);
   }
 
   return (
     <Fragment>
-      <form className="row" onSubmit={sendInputData}>
-        <div className="col-md-3">
+      <form onSubmit={sendInputData}>
+        <div>
           <input
-            className="form-control"
             type="text"
             placeholder={name}
             name="name"
             onChange={handleInputChange}
           ></input>
         </div>
-        <div className="col-md-3">
+        <div>
           <input
-            className="form-control"
             type="text"
             placeholder={age}
             name="age"
             onChange={handleInputChange}
           ></input>
         </div>
-        <div className="col-md-3">
+        <div>
           <input
-            className="form-control"
             type="text"
             placeholder={email}
             name="email"
             onChange={handleInputChange}
           ></input>
         </div>
-        <div className="col-md-3">
+        <div>
           <input
-            className="form-control"
             type="text"
             placeholder={phoneNumber}
             name="phoneNumber"
             onChange={handleInputChange}
           ></input>
         </div>
-        <div className="col-md-3">
+        <div>
           <input
-            className="form-control"
             type="text"
             placeholder={address}
             name="address"
             onChange={handleInputChange}
           ></input>
         </div>
-        <div className="col-md-3">
-          <button className="btn btn-primary" type="submit">
-            SAVE
-          </button>
+        <div>
+          <button type="submit">Save</button>
+          <Button onClick={cancelUpdatingAndCloseForm} label="Exit"></Button>
         </div>
       </form>
     </Fragment>

@@ -1,6 +1,12 @@
 .worker-preview-card-and-buttons {
   text-align: center;
   margin-bottom: 60px;
+  border: thin solid black;
+  border-radius: 30px;
+  background-color: rgb(244, 208, 28);
+}
+.worker-preview-card-and-buttons:hover {
+  border: 5px solid black;
 }
 
 .worker-preview-card-name {
@@ -9,6 +15,7 @@
 
 .preview-card-buttons {
   margin-top: 10px;
+  padding-bottom: 10px;
 }
 .preview-card-buttons > * {
   margin-right: 5px;

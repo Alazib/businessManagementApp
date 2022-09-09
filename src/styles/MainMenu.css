@@ -19,7 +19,9 @@
 }
 
 .nav-links > ul > li > a:hover {
-  background-color: green;
+  background-color: rgb(244, 208, 28);
+  color: black;
+  font-size: large;
 }
 
 .presentation {
