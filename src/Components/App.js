@@ -4,6 +4,7 @@ import workerListGenerator from "../workerListGenerator";
 import WorkerList from "./WorkerList";
 import WorkerDetail from "./WorkerDetail";
 import MainMenu from "./MainMenu";
+import photo from "../image.png";
 
 function App() {
   const [workerList, setWorkerList] = useState([]);
@@ -45,6 +46,11 @@ function App() {
           }
         />
       </Routes>
+      <img
+        src={photo}
+        alt="foto"
+        style={{ display: "block", margin: "auto", paddingTop: "100px" }}
+      ></img>
     </div>
   );
 }

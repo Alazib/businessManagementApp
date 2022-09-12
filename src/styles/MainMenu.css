@@ -15,11 +15,11 @@
 .nav-links > ul > li > a {
   display: block;
   padding: 20px;
-  color: white;
+  color: rgb(227, 227, 227);
 }
 
 .nav-links > ul > li > a:hover {
-  background-color: rgb(244, 208, 28);
+  background-color: rgb(227, 227, 227);
   color: black;
   font-size: large;
 }

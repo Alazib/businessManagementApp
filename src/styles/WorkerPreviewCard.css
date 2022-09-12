@@ -3,14 +3,18 @@
   margin-bottom: 60px;
   border: thin solid black;
   border-radius: 30px;
-  background-color: rgb(244, 208, 28);
+  background-color: rgba(112, 105, 105, 0.6);
 }
+
 .worker-preview-card-and-buttons:hover {
-  border: 5px solid black;
+  border: 2px solid white;
 }
 
 .worker-preview-card-name {
   margin: 5px;
+  color: rgb(224, 222, 222);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .preview-card-buttons {

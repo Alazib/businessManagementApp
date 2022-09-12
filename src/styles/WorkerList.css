@@ -4,6 +4,15 @@
   padding-top: 80px;
 }
 
-.link-to-main-menu {
-  margin-top: 20px;
+.active-workers > h3,
+.non-active-workers > h3 {
+  color: rgb(227, 227, 227);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: thin solid rgb(227, 227, 227);
+  padding: 15px;
+  background-color: black;
+  border-radius: 10px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }

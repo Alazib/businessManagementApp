@@ -1,6 +1,5 @@
 import WorkerPreviewCard from "./WorkerPreviewCard";
 import "../styles/WorkerList.css";
-import { Link } from "react-router-dom";
 
 function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
   const numberOfActiveWorkers = workerList.filter((worker) => {
@@ -15,7 +14,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
     <>
       <div className="worker-list">
         <div className="active-workers">
-          <h2>{numberOfActiveWorkers.length} ACTIVE WORKERS</h2>
+          <h3>ACTIVE WORKERS: {numberOfActiveWorkers.length}</h3>
           {workerList.map((worker, position) => {
             const WORKER_IS_ACTIVE = worker.active;
 
@@ -36,7 +35,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
         </div>
 
         <div className="non-active-workers">
-          <h2>{numberOfNonActiveWorkers.length} NON-ACTIVE WORKERS</h2>
+          <h3>NON-ACTIVE WORKERS: {numberOfNonActiveWorkers.length}</h3>
           {workerList.map((worker, position) => {
             const WORKER_IS_NOT_ACTIVE = !worker.active;
             return (

@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
+import "../styles/Form.css";
 
 function Form({
   workerDetail,
@@ -51,48 +53,43 @@ function Form({
 
   return (
     <Fragment>
-      <form onSubmit={sendInputData}>
+      <form className="worker-form" onSubmit={sendInputData}>
         <div>
-          <input
-            type="text"
+          <Input
             placeholder={name}
             name="name"
             onChange={handleInputChange}
-          ></input>
+          ></Input>
         </div>
         <div>
-          <input
-            type="text"
+          <Input
             placeholder={age}
             name="age"
             onChange={handleInputChange}
-          ></input>
+          ></Input>
         </div>
         <div>
-          <input
-            type="text"
-            placeholder={email}
-            name="email"
-            onChange={handleInputChange}
-          ></input>
-        </div>
-        <div>
-          <input
-            type="text"
+          <Input
             placeholder={phoneNumber}
             name="phoneNumber"
             onChange={handleInputChange}
-          ></input>
+          ></Input>
         </div>
         <div>
-          <input
-            type="text"
+          <Input
+            placeholder={email}
+            name="email"
+            onChange={handleInputChange}
+          ></Input>
+        </div>
+        <div>
+          <Input
             placeholder={address}
             name="address"
             onChange={handleInputChange}
-          ></input>
+          ></Input>
         </div>
-        <div>
+        <div className="buttons-save-exit">
           <button type="submit">Save</button>
           <Button onClick={cancelUpdatingAndCloseForm} label="Exit"></Button>
         </div>

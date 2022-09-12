@@ -4,6 +4,16 @@
   padding-top: 80px;
 }
 
+.worker-detail-form {
+  border: thin solid white;
+  color: rgb(224, 222, 222);
+  padding: 30px;
+  background-color: rgba(112, 105, 105, 0.6);
+  border-radius: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -25,4 +35,6 @@ a {
 input[placeholder] {
   font-weight: 600;
   color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
