@@ -1,22 +1,20 @@
 import { Route, Routes } from "react-router";
 import { useState, useEffect } from "react";
-import workerListGenerator from "../workerListGenerator";
 import WorkerList from "./WorkerList";
 import WorkerDetail from "./WorkerDetail";
 import MainMenu from "./MainMenu";
-import photo from "../image.png";
+import workerListGenerator from "../workerListGenerator";
+import MarketSurveys from "./MarketSurveys";
+import Inventory from "./Inventory";
+import Contact from "./Contact";
 
 function App() {
   const [workerList, setWorkerList] = useState([]);
   const [workerDetail, setWorkerDetail] = useState({});
 
   useEffect(() => {
-    const listOfWorkers = workerListGenerator();
-
-    setWorkerList(listOfWorkers);
+    workerListGenerator(setWorkerList);
   }, []);
-
-  console.log(workerDetail);
 
   return (
     <div className="app">
@@ -45,12 +43,10 @@ function App() {
             />
           }
         />
+        <Route path="market-surveys" element={<MarketSurveys />} />
+        <Route path="inventory" element={<Inventory />} />
+        <Route path="contact" element={<Contact />} />
       </Routes>
-      <img
-        src={photo}
-        alt="foto"
-        style={{ display: "block", margin: "auto", paddingTop: "100px" }}
-      ></img>
     </div>
   );
 }

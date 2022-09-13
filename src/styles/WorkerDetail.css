@@ -1,17 +1,29 @@
 .worker-detail-form-and-buttons {
   display: flex;
-  justify-content: space-around;
-  padding-top: 80px;
+  justify-content: center;
+  padding-top: 100px;
+  padding-bottom: 120px;
+  margin: auto;
 }
 
 .worker-detail-form {
   border: thin solid white;
   color: rgb(224, 222, 222);
   padding: 30px;
+  padding-right: 50px;
+  padding-left: 50px;
   background-color: rgba(112, 105, 105, 0.6);
   border-radius: 20px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-right: 50px;
+  text-align: center;
+}
+.worker-detail-form > img {
+  margin-bottom: 30px;
+  border: 3px solid black;
+  width: 190px;
+  height: 190px;
 }
 
 .buttons {
@@ -21,7 +33,7 @@
 }
 
 .buttons > * {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 p {

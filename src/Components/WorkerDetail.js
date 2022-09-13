@@ -13,7 +13,7 @@ function WorkerDetail({
 }) {
   const [update, setUpdate] = useState(false);
 
-  const { id, photo } = workerDetail;
+  const { id, avatar } = workerDetail;
 
   function workerStateSwitcher() {
     let workerListTemplate = [...workerList];
@@ -46,11 +46,10 @@ function WorkerDetail({
     <>
       <div className="worker-detail-form-and-buttons">
         <div className="worker-detail-form">
-          <div>
-            <img src={photo} alt="worker"></img>
-          </div>
+          <img src={avatar} alt="worker" />
 
           {!update && <WorkerIndexCard workerDetail={workerDetail} />}
+
           {update && (
             <Form
               workerDetail={workerDetail}

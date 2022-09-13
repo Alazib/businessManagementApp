@@ -1,5 +1,8 @@
 function WorkerIndexCard({ workerDetail }) {
-  const { name, age, phoneNumber, email, address, active } = workerDetail;
+  const { first_name, last_name, age, phone, email, address, active } =
+    workerDetail;
+
+  const name = `${first_name} ${last_name}`;
 
   return (
     <>
@@ -19,8 +22,8 @@ function WorkerIndexCard({ workerDetail }) {
         <div>
           <b>Phone number:</b>
           <br></br>
-          {phoneNumber}
-        </div>{" "}
+          {phone}
+        </div>
         <br></br>
         <div>
           <b>Email:</b>

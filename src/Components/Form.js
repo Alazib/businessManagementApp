@@ -15,7 +15,8 @@ function Form({
     ...workerDetail,
   });
 
-  const { id, name, email, age, address, phoneNumber } = workerDetail;
+  const { id, first_name, last_name, email, age, address, phone } =
+    workerDetail;
 
   function handleInputChange(event) {
     setData({
@@ -55,11 +56,27 @@ function Form({
     <Fragment>
       <form className="worker-form" onSubmit={sendInputData}>
         <div>
+          <div>
+            <b>Name:</b>
+            <br></br>
+          </div>
           <Input
-            placeholder={name}
-            name="name"
+            placeholder={first_name}
+            name="first_name"
             onChange={handleInputChange}
           ></Input>
+        </div>
+        <div>
+          <Input
+            placeholder={last_name}
+            name="last_name"
+            onChange={handleInputChange}
+          ></Input>
+        </div>
+        <div>
+          <br></br>
+          <b>Age:</b>
+          <br></br>
         </div>
         <div>
           <Input
@@ -69,11 +86,21 @@ function Form({
           ></Input>
         </div>
         <div>
+          <br></br>
+          <b>Phone:</b>
+          <br></br>
+        </div>
+        <div>
           <Input
-            placeholder={phoneNumber}
-            name="phoneNumber"
+            placeholder={phone}
+            name="phone"
             onChange={handleInputChange}
           ></Input>
+        </div>
+        <br></br>
+        <div>
+          <b>Email:</b>
+          <br></br>
         </div>
         <div>
           <Input
@@ -82,6 +109,11 @@ function Form({
             onChange={handleInputChange}
           ></Input>
         </div>
+        <br></br>
+        <div>
+          <b>Address:</b>
+          <br></br>
+        </div>
         <div>
           <Input
             placeholder={address}
@@ -89,6 +121,7 @@ function Form({
             onChange={handleInputChange}
           ></Input>
         </div>
+        <br></br>
         <div className="buttons-save-exit">
           <button type="submit">Save</button>
           <Button onClick={cancelUpdatingAndCloseForm} label="Exit"></Button>

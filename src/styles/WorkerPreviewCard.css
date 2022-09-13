@@ -17,6 +17,14 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
+.worker-preview-card-image {
+  margin-top: 15px;
+}
+
+.worker-preview-card-image > img {
+  border: 3px solid black;
+}
+
 .preview-card-buttons {
   margin-top: 10px;
   padding-bottom: 10px;

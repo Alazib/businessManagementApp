@@ -8,7 +8,7 @@ function WorkerPreviewCard({
   worker,
   setWorkerDetail,
 }) {
-  const { id, photo, name } = worker;
+  const { id, avatar, first_name, last_name } = worker;
 
   function deleteWorkerFromList() {
     let newWorkerList = workerList.filter((worker) => {
@@ -41,9 +41,9 @@ function WorkerPreviewCard({
           }}
         >
           <div className="worker-preview-card-image">
-            <img src={photo} alt="avatar" width="120px" height="149px"></img>
+            <img src={avatar} alt="avatar"></img>
           </div>
-          <h5 className="worker-preview-card-name">{name}</h5>
+          <h5 className="worker-preview-card-name">{`${first_name} ${last_name}`}</h5>
         </Link>
       </div>
 
