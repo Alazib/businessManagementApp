@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useMemo } from "react";
 import Form from "./Form";
 import Button from "./Button";
 import "../styles/WorkerDetail.css";
 import WorkerIndexCard from "./WorkerIndexCard";
-import { useNavigate } from "react-router-dom";
+
+function useQuery() {
+  const { search } = useLocation();
+
+  return useMemo(() => new URLSearchParams(search), [search]);
+}
 
 function WorkerDetail({
   workerList,
@@ -14,6 +21,22 @@ function WorkerDetail({
   const [update, setUpdate] = useState(false);
 
   const { id, avatar } = workerDetail;
+
+  let query = useQuery();
+  let queryId = query.get("id");
+
+  useEffect(() => {
+    const userUrl = `https://reqres.in/api/users/${queryId}`;
+    const thereIsNoWorkerDetail = !workerDetail.hasOwnProperty("id");
+    if (thereIsNoWorkerDetail) {
+      fetch(userUrl)
+        .then((response) => response.json())
+        .then((json) => {
+          const workerDetailRecovered = json.data;
+          setWorkerDetail(workerDetailRecovered);
+        });
+    }
+  }, []);
 
   function workerStateSwitcher() {
     let workerListTemplate = [...workerList];
@@ -29,6 +52,8 @@ function WorkerDetail({
     setWorkerList(workerListTemplate);
   }
 
+  const navigate = useNavigate();
+
   function deleteWorkerAndBackToList() {
     let newWorkerList = workerList.filter((worker) => {
       return !(id === worker.id);
@@ -36,7 +61,6 @@ function WorkerDetail({
     setWorkerList(newWorkerList);
     navigate("/worker-list");
   }
-  const navigate = useNavigate();
 
   function showUpdateForm() {
     setUpdate(!update);

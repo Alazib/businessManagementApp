@@ -35,7 +35,7 @@ function WorkerPreviewCard({
     <div className="worker-preview-card-and-buttons">
       <div className="worker-preview-card">
         <Link
-          to="/worker-detail"
+          to={`/worker-detail?id=${id}`}
           onClick={() => {
             setWorkerDetail(worker);
           }}
