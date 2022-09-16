@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import WorkerList from "./WorkerList";
 import WorkerDetail from "./WorkerDetail";
 import MainMenu from "./MainMenu";
-import workerListGenerator from "../workerListGenerator";
+import getApiResponse from "../apiRequests";
 import MarketSurveys from "./MarketSurveys";
 import Inventory from "./Inventory";
 import Contact from "./Contact";
@@ -13,7 +13,12 @@ function App() {
   const [workerDetail, setWorkerDetail] = useState({});
 
   useEffect(() => {
-    workerListGenerator(setWorkerList);
+    async function getWorkers() {
+      const data = await getApiResponse();
+      const listOfWorkers = data.data;
+      setWorkerList(listOfWorkers);
+    }
+    getWorkers();
   }, []);
 
   return (

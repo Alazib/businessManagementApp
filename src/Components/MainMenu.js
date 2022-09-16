@@ -1,6 +1,6 @@
 import photo from "../image.png";
 
-function Nada() {
+function MainMenu() {
   return (
     <img
       src={photo}
@@ -10,4 +10,4 @@ function Nada() {
   );
 }
 
-export default Nada;
+export default MainMenu;

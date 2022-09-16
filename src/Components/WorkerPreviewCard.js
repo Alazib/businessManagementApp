@@ -11,11 +11,29 @@ function WorkerPreviewCard({
   const { id, avatar, first_name, last_name } = worker;
 
   function deleteWorkerFromList() {
-    let newWorkerList = workerList.filter((worker) => {
-      return !(worker.id === id);
-    });
+    // let newWorkerList = workerList.filter((worker) => {
+    //   return !(worker.id === id);
+    // });
 
-    setWorkerList(newWorkerList);
+    fetch("https://reqres.in/api/users/1", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log("HTTP request successful");
+        } else {
+          console.log("HTTP request unsuccessful");
+        }
+        return res;
+      })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+
+    // setWorkerList(newWorkerList);
   }
 
   function workerStateSwitcher() {
