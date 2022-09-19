@@ -10,18 +10,56 @@
   width: 100%;
   position: fixed;
   z-index: 100;
+  border-bottom: thin white solid;
 }
 
-.nav-links > ul > li > a {
-  display: block;
+/* Principio de menú desplegable */
+.dropdown {
+  position: relative;
+}
+.dropdown-title {
   padding: 20px;
   color: rgb(227, 227, 227);
 }
-
-.nav-links > ul > li > a:hover {
-  background-color: rgb(227, 227, 227);
+.dropdown-title:hover {
+  background-color: rgb(187, 181, 181);
   color: black;
-  font-size: large;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: inherit;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: black;
+}
+.dropdown-content a {
+  display: block;
+  color: aliceblue;
+  padding: 20px;
+}
+.dropdown-content a:hover {
+  background-color: rgb(187, 181, 181);
+  color: black;
+}
+/* Fin de menú desplegable */
+
+.market-surveys a,
+.inventory a,
+.contact a,
+.main-menu a {
+  display: block;
+  color: white;
+  padding: 20px;
+}
+
+.market-surveys a:hover,
+.inventory a:hover,
+.contact a:hover,
+.main-menu a:hover {
+  background-color: rgb(187, 181, 181);
+  color: black;
 }
 
 .presentation {

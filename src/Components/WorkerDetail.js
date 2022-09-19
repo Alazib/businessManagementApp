@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import Form from "./Form";
 import Button from "./Button";
+import { deleteApiMethodResponse, getApiMethodResponse } from "../apiRequests";
 import "../styles/WorkerDetail.css";
 import WorkerIndexCard from "./WorkerIndexCard";
 
@@ -54,11 +55,15 @@ function WorkerDetail({
 
   const navigate = useNavigate();
 
-  function deleteWorkerAndBackToList() {
-    let newWorkerList = workerList.filter((worker) => {
-      return !(id === worker.id);
-    });
-    setWorkerList(newWorkerList);
+  async function deleteWorkerAndBackToList() {
+    const deletedData = await deleteApiMethodResponse(id);
+    console.log(deletedData);
+
+    // ¿Por qué todo esto de abajo no funciona?
+    const gettedData = await getApiMethodResponse();
+    const listOfWorkers = gettedData.data;
+    setWorkerList(listOfWorkers);
+
     navigate("/worker-list");
   }
 

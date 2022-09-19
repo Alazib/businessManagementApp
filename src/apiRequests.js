@@ -1,31 +1,18 @@
-// function workerListGenerator(setWorkerList) {
-//   const url1 = "https://reqres.in/api/users?page=1";
-//   const url2 = "https://reqres.in/api/users?page=2";
-
-//   fetch(url1)
-//     .then((response) => response.json())
-//     .then((json) => {
-//       let listOfWorkers = [];
-//       listOfWorkers = json.data;
-//       fetch(url2)
-//         .then((response) => response.json())
-//         .then((json) => {
-//           console.log(json);
-//           listOfWorkers.push(...json.data);
-//           listOfWorkers.forEach((worker) => {
-//             worker.age = "edad de prueba";
-//             worker.address = "dirección de prueba";
-//             worker.phone = "teléfono de prueba";
-//             worker.active = worker.id % 2 === 0;
-//           });
-//           setWorkerList(listOfWorkers);
-//         });
-//     });
-// }
-
-async function getApiResponse() {
-  const url = "https://reqres.in/api/users?page=1";
-  return fetch(url).then((response) => response.json());
+async function getApiMethodResponse() {
+  const URL = "https://reqres.in/api/users?page=1";
+  return fetch(URL).then((response) => response.json());
 }
 
-export default getApiResponse;
+async function deleteApiMethodResponse(id) {
+  const URL = `https://reqres.in/api/users/${id}`;
+  const myInit = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return fetch(URL, myInit).then((response) => response.json());
+}
+
+export { getApiMethodResponse, deleteApiMethodResponse };

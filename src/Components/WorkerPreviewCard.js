@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { deleteApiMethodResponse, getApiMethodResponse } from "../apiRequests";
 import "../styles/WorkerPreviewCard.css";
 
 function WorkerPreviewCard({
@@ -10,30 +11,14 @@ function WorkerPreviewCard({
 }) {
   const { id, avatar, first_name, last_name } = worker;
 
-  function deleteWorkerFromList() {
-    // let newWorkerList = workerList.filter((worker) => {
-    //   return !(worker.id === id);
-    // });
+  async function deleteWorkerFromList() {
+    const deletedData = await deleteApiMethodResponse(id);
+    console.log(deletedData);
 
-    fetch("https://reqres.in/api/users/1", {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log("HTTP request successful");
-        } else {
-          console.log("HTTP request unsuccessful");
-        }
-        return res;
-      })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-
-    // setWorkerList(newWorkerList);
+    // ¿Por qué todo esto de abajo no funciona?
+    const gettedData = await getApiMethodResponse();
+    const listOfWorkers = gettedData.data;
+    setWorkerList(listOfWorkers);
   }
 
   function workerStateSwitcher() {
