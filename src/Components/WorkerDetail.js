@@ -6,6 +6,7 @@ import Button from "./Button";
 import { deleteApiMethodResponse, getApiMethodResponse } from "../apiRequests";
 import "../styles/WorkerDetail.css";
 import WorkerIndexCard from "./WorkerIndexCard";
+import Map from "./Map";
 
 function useQuery() {
   const { search } = useLocation();
@@ -71,35 +72,43 @@ function WorkerDetail({
     setUpdate(!update);
   }
 
+  console.log("Recarago");
+
   return (
     <>
-      <div className="worker-detail-form-and-buttons">
-        <div className="worker-detail-form">
-          <img src={avatar} alt="worker" />
+      <div className="worker-detail-form-and-buttons-and-map">
+        <div className="worker-detail-form-and-buttons">
+          <div className="worker-detail-form">
+            <img src={avatar} alt="worker" />
 
-          {!update && <WorkerIndexCard workerDetail={workerDetail} />}
+            {!update && <WorkerIndexCard workerDetail={workerDetail} />}
 
-          {update && (
-            <Form
-              workerDetail={workerDetail}
-              setWorkerDetail={setWorkerDetail}
-              workerList={workerList}
-              setWorkerList={setWorkerList}
-              update={update}
-              setUpdate={setUpdate}
-            />
+            {update && (
+              <Form
+                workerDetail={workerDetail}
+                setWorkerDetail={setWorkerDetail}
+                workerList={workerList}
+                setWorkerList={setWorkerList}
+                update={update}
+                setUpdate={setUpdate}
+              />
+            )}
+          </div>
+
+          {!update && (
+            <div className="buttons">
+              <Button onClick={workerStateSwitcher} label="Active/Inactive" />
+
+              <Button onClick={showUpdateForm} label="Update worker info" />
+
+              <Button
+                onClick={deleteWorkerAndBackToList}
+                label="Delete worker"
+              />
+            </div>
           )}
         </div>
-
-        {!update && (
-          <div className="buttons">
-            <Button onClick={workerStateSwitcher} label="Active/Inactive" />
-
-            <Button onClick={showUpdateForm} label="Update worker info" />
-
-            <Button onClick={deleteWorkerAndBackToList} label="Delete worker" />
-          </div>
-        )}
+        <Map avatar={avatar} />
       </div>
     </>
   );

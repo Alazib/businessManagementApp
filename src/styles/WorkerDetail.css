@@ -1,9 +1,13 @@
+.worker-detail-form-and-buttons-and-map {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .worker-detail-form-and-buttons {
   display: flex;
   justify-content: center;
   padding-top: 100px;
   padding-bottom: 120px;
-  margin: auto;
 }
 
 .worker-detail-form {
