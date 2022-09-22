@@ -1,4 +1,4 @@
-import Spinner from "./Spinner";
+import Spinner from "./Spinner"
 
 function MarketSurveys() {
   return (
@@ -18,6 +18,6 @@ function MarketSurveys() {
         <Spinner></Spinner>
       </div>
     </div>
-  );
+  )
 }
-export default MarketSurveys;
+export default MarketSurveys

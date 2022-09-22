@@ -1,14 +1,20 @@
-import WorkerPreviewCard from "./WorkerPreviewCard";
-import "../styles/WorkerList.css";
+import WorkerPreviewCard from "./WorkerPreviewCard"
+import { useEffect } from "react"
+import getWorkers from "../getWorkers"
+import "../styles/WorkerList.css"
 
 function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
   const numberOfActiveWorkers = workerList.filter((worker) => {
-    return worker.active;
-  });
+    return worker.active
+  })
 
   const numberOfNonActiveWorkers = workerList.filter((worker) => {
-    return !worker.active;
-  });
+    return !worker.active
+  })
+
+  useEffect(() => {
+    getWorkers(setWorkerList)
+  }, [])
 
   return (
     <>
@@ -16,7 +22,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
         <div className="active-workers">
           <h3>ACTIVE WORKERS: {numberOfActiveWorkers.length}</h3>
           {workerList.map((worker) => {
-            const WORKER_IS_ACTIVE = worker.active;
+            const WORKER_IS_ACTIVE = worker.active
 
             return (
               <div key={worker.id}>
@@ -29,14 +35,14 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
                   />
                 )}
               </div>
-            );
+            )
           })}
         </div>
 
         <div className="non-active-workers">
           <h3>NON-ACTIVE WORKERS: {numberOfNonActiveWorkers.length}</h3>
           {workerList.map((worker) => {
-            const WORKER_IS_NOT_ACTIVE = !worker.active;
+            const WORKER_IS_NOT_ACTIVE = !worker.active
             return (
               <div key={worker.id}>
                 {WORKER_IS_NOT_ACTIVE && (
@@ -48,12 +54,12 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
                   />
                 )}
               </div>
-            );
+            )
           })}
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default WorkerList;
+export default WorkerList

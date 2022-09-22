@@ -1,7 +1,9 @@
-import { Fragment, useState } from "react";
-import Button from "./Button";
-import Input from "./Input";
-import "../styles/Form.css";
+import { Fragment, useState } from "react"
+import Button from "./Button"
+import Input from "./Input"
+import { putApiMethodResponse } from "../apiRequests"
+import getWorkers from "../getWorkers"
+import "../styles/Form.css"
 
 function Form({
   workerDetail,
@@ -13,43 +15,35 @@ function Form({
 }) {
   const [data, setData] = useState({
     ...workerDetail,
-  });
+  })
 
-  const { id, first_name, last_name, email, age, address, phone } =
-    workerDetail;
+  const { id, first_name, last_name, email, age, address, phone } = workerDetail
 
   function handleInputChange(event) {
     setData({
       ...data,
       [event.target.name]: event.target.value,
-    });
+    })
   }
 
   function sendInputData(event) {
-    event.preventDefault();
-    const newWorkerList = workerListTemplate();
-    setWorkerList(newWorkerList);
-    saveUpdatingandCloseForm();
+    event.preventDefault()
+    sendWorkerNewData(id, data)
+    saveUpdatingandCloseForm()
   }
 
-  function workerListTemplate() {
-    const workerListTemplate = [...workerList];
-
-    workerListTemplate.forEach((worker, position) => {
-      if (worker.id === id) {
-        workerListTemplate[position] = { ...data };
-      }
-    });
-    return workerListTemplate;
+  async function sendWorkerNewData(id, data) {
+    await putApiMethodResponse(id, data)
+    getWorkers(setWorkerList)
   }
 
   function saveUpdatingandCloseForm() {
-    setWorkerDetail(data);
-    setUpdate(!update);
+    setWorkerDetail(data)
+    setUpdate(!update)
   }
 
   function cancelUpdatingAndCloseForm() {
-    setUpdate(!update);
+    setUpdate(!update)
   }
 
   return (
@@ -128,7 +122,7 @@ function Form({
         </div>
       </form>
     </Fragment>
-  );
+  )
 }
 
-export default Form;
+export default Form

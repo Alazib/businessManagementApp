@@ -1,4 +1,4 @@
-import photo from "../image.png";
+import photo from "../image.png"
 
 function MainMenu() {
   return (
@@ -7,7 +7,7 @@ function MainMenu() {
       alt="foto"
       style={{ display: "block", margin: "auto", paddingTop: "100px" }}
     ></img>
-  );
+  )
 }
 
-export default MainMenu;
+export default MainMenu

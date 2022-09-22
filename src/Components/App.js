@@ -1,31 +1,21 @@
-import { Route, Routes } from "react-router";
-import { useState, useEffect } from "react";
-import WorkerList from "./WorkerList";
-import WorkerDetail from "./WorkerDetail";
-import MainMenu from "./MainMenu";
-import { getApiMethodResponse } from "../apiRequests";
-import MarketSurveys from "./MarketSurveys";
-import Inventory from "./Inventory";
-import Contact from "./Contact";
+import { Route, Routes } from "react-router"
+import { useState } from "react"
+import WorkerList from "./WorkerList"
+import WorkerDetail from "./WorkerDetail"
+import MainMenu from "./MainMenu"
+import MarketSurveys from "./MarketSurveys"
+import Inventory from "./Inventory"
+import Contact from "./Contact"
 
 function App() {
-  const [workerList, setWorkerList] = useState([]);
-  const [workerDetail, setWorkerDetail] = useState({});
+  const [workerList, setWorkerList] = useState([])
 
-  useEffect(() => {
-    async function getWorkers() {
-      const data = await getApiMethodResponse();
-      const listOfWorkers = data.data;
-      setWorkerList(listOfWorkers);
-    }
-    getWorkers();
-  }, []);
+  const [workerDetail, setWorkerDetail] = useState({})
 
   return (
     <div className="app">
       <Routes>
         <Route path="/" element={<MainMenu />} />
-
         <Route
           path="worker-list"
           element={
@@ -51,9 +41,10 @@ function App() {
         <Route path="market-surveys" element={<MarketSurveys />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="new-worker" />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

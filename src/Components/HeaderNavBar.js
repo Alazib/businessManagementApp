@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import "../styles/HeaderNavBar.css";
+import { Link } from "react-router-dom"
+import "../styles/HeaderNavBar.css"
 
 function HeaderNavBar() {
   return (
@@ -11,9 +11,7 @@ function HeaderNavBar() {
               <div className="dropdown-title">Workers</div>
               <div className="dropdown-content">
                 <Link to="/worker-list">Worker list</Link>
-                <a rel="noopener noreferrer" target="_blank" href="ll">
-                  New worker
-                </a>
+                <Link to="/new-worker">New worker</Link>
               </div>
             </li>
             <li className="market-surveys">
@@ -32,7 +30,7 @@ function HeaderNavBar() {
         </nav>
       </header>
     </div>
-  );
+  )
 }
 
-export default HeaderNavBar;
+export default HeaderNavBar

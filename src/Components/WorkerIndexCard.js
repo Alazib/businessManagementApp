@@ -1,8 +1,8 @@
 function WorkerIndexCard({ workerDetail }) {
   const { first_name, last_name, age, phone, email, address, active } =
-    workerDetail;
+    workerDetail
 
-  const name = `${first_name} ${last_name}`;
+  const name = `${first_name} ${last_name}`
 
   return (
     <>
@@ -45,7 +45,7 @@ function WorkerIndexCard({ workerDetail }) {
         <br></br>
       </div>
     </>
-  );
+  )
 }
 
-export default WorkerIndexCard;
+export default WorkerIndexCard

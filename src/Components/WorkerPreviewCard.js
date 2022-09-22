@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import Button from "./Button";
-import { deleteApiMethodResponse, getApiMethodResponse } from "../apiRequests";
-import "../styles/WorkerPreviewCard.css";
+import { Link } from "react-router-dom"
+import Button from "./Button"
+import { deleteApiMethodResponse, putApiMethodResponse } from "../apiRequests"
+import getWorkers from "../getWorkers"
+import "../styles/WorkerPreviewCard.css"
 
 function WorkerPreviewCard({
   workerList,
@@ -9,29 +10,17 @@ function WorkerPreviewCard({
   worker,
   setWorkerDetail,
 }) {
-  const { id, avatar, first_name, last_name } = worker;
+  const { id, avatar, first_name, last_name } = worker
 
   async function deleteWorkerFromList() {
-    const deletedData = await deleteApiMethodResponse(id);
-    console.log(deletedData);
-
-    // ¿Por qué todo esto de abajo no funciona?
-    const gettedData = await getApiMethodResponse();
-    const listOfWorkers = gettedData.data;
-    setWorkerList(listOfWorkers);
+    await deleteApiMethodResponse(id)
+    getWorkers(setWorkerList)
   }
 
-  function workerStateSwitcher() {
-    let workerListTemplate = [...workerList];
-
-    workerListTemplate.forEach((worker, position) => {
-      if (worker.id === id) {
-        workerListTemplate[position].active =
-          !workerListTemplate[position].active;
-      }
-    });
-
-    setWorkerList(workerListTemplate);
+  async function workerStateSwitcher(id) {
+    worker.active = !worker.active
+    await putApiMethodResponse(id, worker)
+    getWorkers(setWorkerList)
   }
 
   return (
@@ -40,7 +29,7 @@ function WorkerPreviewCard({
         <Link
           to={`/worker-detail?id=${id}`}
           onClick={() => {
-            setWorkerDetail(worker);
+            setWorkerDetail(worker)
           }}
         >
           <div className="worker-preview-card-image">
@@ -63,7 +52,7 @@ function WorkerPreviewCard({
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default WorkerPreviewCard;
+export default WorkerPreviewCard

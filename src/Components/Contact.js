@@ -1,4 +1,4 @@
-import Spinner from "./Spinner";
+import Spinner from "./Spinner"
 
 function Contact() {
   return (
@@ -18,7 +18,7 @@ function Contact() {
         <Spinner></Spinner>
       </div>
     </div>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

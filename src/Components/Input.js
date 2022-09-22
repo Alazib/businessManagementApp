@@ -1,4 +1,4 @@
-import "../styles/Input.css";
+import "../styles/Input.css"
 
 function Input({ placeholder, name, onChange }) {
   return (
@@ -9,7 +9,7 @@ function Input({ placeholder, name, onChange }) {
       name={name}
       onChange={onChange}
     ></input>
-  );
+  )
 }
 
-export default Input;
+export default Input

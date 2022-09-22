@@ -1,4 +1,4 @@
-import Spinner from "./Spinner";
+import Spinner from "./Spinner"
 
 function Inventory() {
   return (
@@ -18,6 +18,6 @@ function Inventory() {
         <Spinner></Spinner>
       </div>
     </div>
-  );
+  )
 }
-export default Inventory;
+export default Inventory

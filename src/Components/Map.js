@@ -1,6 +1,6 @@
-import GoogleMapReact from "google-map-react";
-import "../styles/Map.css";
-import marker from "../images/marker-map.png";
+import GoogleMapReact from "google-map-react"
+import "../styles/Map.css"
+import marker from "../images/marker-map.png"
 
 const Marker = ({ avatar }) => (
   <div className="marker">
@@ -11,7 +11,7 @@ const Marker = ({ avatar }) => (
     ></img>
     <img className="marker-avatar" src={avatar} alt="worker"></img>
   </div>
-);
+)
 
 function Map({ avatar }) {
   const defaultProps = {
@@ -20,9 +20,9 @@ function Map({ avatar }) {
       lng: -4,
     },
     zoom: 9,
-  };
+  }
 
-  const { center, zoom } = defaultProps;
+  const { center, zoom } = defaultProps
 
   return (
     <div className="map" style={{ height: "350px", width: "550px" }}>
@@ -36,7 +36,7 @@ function Map({ avatar }) {
         </GoogleMapReact>
       )}
     </div>
-  );
+  )
 }
 
-export default Map;
+export default Map

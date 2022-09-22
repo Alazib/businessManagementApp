@@ -1,3 +1,3 @@
-import { AvatarGenerator } from "random-avatar-generator";
+import { AvatarGenerator } from "random-avatar-generator"
 
 export const avatar = new AvatarGenerator()

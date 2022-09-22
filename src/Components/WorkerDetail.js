@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useMemo } from "react";
-import Form from "./Form";
-import Button from "./Button";
-import { deleteApiMethodResponse, getApiMethodResponse } from "../apiRequests";
-import "../styles/WorkerDetail.css";
-import WorkerIndexCard from "./WorkerIndexCard";
-import Map from "./Map";
+import { useEffect, useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import { useMemo } from "react"
+import Form from "./Form"
+import Button from "./Button"
+import { deleteApiMethodResponse, putApiMethodResponse } from "../apiRequests"
+import getWorkers from "../getWorkers"
+import "../styles/WorkerDetail.css"
+import WorkerIndexCard from "./WorkerIndexCard"
+import Map from "./Map"
 
 function useQuery() {
-  const { search } = useLocation();
+  const { search } = useLocation()
 
-  return useMemo(() => new URLSearchParams(search), [search]);
+  return useMemo(() => new URLSearchParams(search), [search])
 }
 
 function WorkerDetail({
@@ -20,59 +21,42 @@ function WorkerDetail({
   workerDetail,
   setWorkerDetail,
 }) {
-  const [update, setUpdate] = useState(false);
+  const [update, setUpdate] = useState(false)
 
-  const { id, avatar } = workerDetail;
+  const { id, avatar } = workerDetail
 
-  let query = useQuery();
-  let queryId = query.get("id");
+  let query = useQuery()
+  let queryId = query.get("id")
 
   useEffect(() => {
-    const userUrl = `https://reqres.in/api/users/${queryId}`;
-    const thereIsNoWorkerDetail = !workerDetail.hasOwnProperty("id");
+    const userUrl = `https://reqres.in/api/users/${queryId}`
+    const thereIsNoWorkerDetail = !workerDetail.hasOwnProperty("id")
     if (thereIsNoWorkerDetail) {
       fetch(userUrl)
         .then((response) => response.json())
-        .then((json) => {
-          const workerDetailRecovered = json.data;
-          setWorkerDetail(workerDetailRecovered);
-        });
+        .then((data) => {
+          const workerDetailRecovered = data.data
+          setWorkerDetail(workerDetailRecovered)
+        })
     }
-  }, []);
+  }, [])
 
-  function workerStateSwitcher() {
-    let workerListTemplate = [...workerList];
-
-    workerListTemplate.forEach((worker, position) => {
-      if (worker.id === id) {
-        workerListTemplate[position].active =
-          !workerListTemplate[position].active;
-        setWorkerDetail(workerListTemplate[position]);
-      }
-    });
-
-    setWorkerList(workerListTemplate);
+  async function workerStateSwitcher(id) {
+    workerDetail.active = !workerDetail.active
+    await putApiMethodResponse(id, workerDetail)
+    getWorkers(setWorkerList)
   }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   async function deleteWorkerAndBackToList() {
-    const deletedData = await deleteApiMethodResponse(id);
-    console.log(deletedData);
-
-    // ¿Por qué todo esto de abajo no funciona?
-    const gettedData = await getApiMethodResponse();
-    const listOfWorkers = gettedData.data;
-    setWorkerList(listOfWorkers);
-
-    navigate("/worker-list");
+    await deleteApiMethodResponse(id)
+    navigate("/worker-list")
   }
 
   function showUpdateForm() {
-    setUpdate(!update);
+    setUpdate(!update)
   }
-
-  console.log("Recarago");
 
   return (
     <>
@@ -111,7 +95,7 @@ function WorkerDetail({
         <Map avatar={avatar} />
       </div>
     </>
-  );
+  )
 }
 
-export default WorkerDetail;
+export default WorkerDetail
