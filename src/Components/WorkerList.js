@@ -4,6 +4,15 @@ import getWorkers from "../getWorkers"
 import "../styles/WorkerList.css"
 
 function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
+  async function getAndSetWorkers() {
+    const totalWorkers = await getWorkers()
+    setWorkerList(totalWorkers)
+  }
+
+  useEffect(() => {
+    getAndSetWorkers()
+  }, [])
+
   const numberOfActiveWorkers = workerList.filter((worker) => {
     return worker.active
   })
@@ -11,10 +20,6 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
   const numberOfNonActiveWorkers = workerList.filter((worker) => {
     return !worker.active
   })
-
-  useEffect(() => {
-    getWorkers(setWorkerList)
-  }, [])
 
   return (
     <>

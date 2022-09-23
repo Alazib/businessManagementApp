@@ -6,6 +6,7 @@ import MainMenu from "./MainMenu"
 import MarketSurveys from "./MarketSurveys"
 import Inventory from "./Inventory"
 import Contact from "./Contact"
+import NewWorker from "./NewWorker"
 
 function App() {
   const [workerList, setWorkerList] = useState([])
@@ -41,7 +42,7 @@ function App() {
         <Route path="market-surveys" element={<MarketSurveys />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="new-worker" />
+        <Route path="new-worker" element={<NewWorker />} />
       </Routes>
     </div>
   )

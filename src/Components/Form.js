@@ -8,7 +8,6 @@ import "../styles/Form.css"
 function Form({
   workerDetail,
   setWorkerDetail,
-  workerList,
   setWorkerList,
   update,
   setUpdate,
@@ -26,15 +25,16 @@ function Form({
     })
   }
 
-  function sendInputData(event) {
+  async function sendInputData(event) {
     event.preventDefault()
-    sendWorkerNewData(id, data)
+    await putApiMethodResponse(id, data)
+    getAndSetWorkers()
     saveUpdatingandCloseForm()
   }
 
-  async function sendWorkerNewData(id, data) {
-    await putApiMethodResponse(id, data)
-    getWorkers(setWorkerList)
+  async function getAndSetWorkers() {
+    const totalWorkers = await getWorkers()
+    setWorkerList(totalWorkers)
   }
 
   function saveUpdatingandCloseForm() {

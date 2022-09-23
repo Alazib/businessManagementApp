@@ -1,31 +1,30 @@
-import { getApiMethodResponse1, getApiMethodResponse2 } from "./apiRequests"
+import { getListApiMethod1, getListApiMethod2 } from "./apiRequests"
 
-async function getWorkers(setWorkerList) {
-  const data1 = await getApiMethodResponse1()
-  const listOfWorkers1 = data1.data
-  const data2 = await getApiMethodResponse2()
-  const listOfWorkers2 = data2.data
-  const totalWorkersList = [...listOfWorkers1, ...listOfWorkers2]
-  provisionalSolutionForTheLackOfBackEnd(totalWorkersList)
-  setWorkerList(totalWorkersList)
+async function getWorkers() {
+  const list1 = await getListApiMethod1()
+  const list2 = await getListApiMethod2()
+  const totalWorkers = [...list1, ...list2]
+  provisionalSolutionForTheLackofDatabase(totalWorkers)
+  return totalWorkers
 }
 
-function provisionalSolutionForTheLackOfBackEnd(totalWorkersList) {
-  totalWorkersList.forEach((worker) => {
+function provisionalSolutionForTheLackofDatabase(totalWorkers) {
+  totalWorkers.forEach((worker) => {
     const { id } = worker
-
     if (id % 2 === 0) {
       worker.active = true
-      worker.age = 35
-      worker.phone = "+0034 651876458"
-      worker.address = "Provisional Street 87"
+      worker.age = 45
+      worker.phone = "+0034 659568437"
+      worker.address = "Provisional street"
     } else {
       worker.active = false
-      worker.age = 43
-      worker.phone = "+0034 651452359"
-      worker.address = "Provisional Avenue 456"
+      worker.age = 38
+      worker.phone = "+0034 679565433"
+      worker.address = "Provisional avenue"
     }
   })
+
+  return totalWorkers
 }
 
 export default getWorkers

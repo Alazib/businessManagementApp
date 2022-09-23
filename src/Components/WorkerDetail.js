@@ -44,15 +44,18 @@ function WorkerDetail({
   async function workerStateSwitcher(id) {
     workerDetail.active = !workerDetail.active
     await putApiMethodResponse(id, workerDetail)
-    getWorkers(setWorkerList)
+    getAndSetWorkers()
   }
-
-  const navigate = useNavigate()
+  async function getAndSetWorkers() {
+    const totalWorkers = await getWorkers()
+    setWorkerList(totalWorkers)
+  }
 
   async function deleteWorkerAndBackToList() {
     await deleteApiMethodResponse(id)
     navigate("/worker-list")
   }
+  const navigate = useNavigate()
 
   function showUpdateForm() {
     setUpdate(!update)

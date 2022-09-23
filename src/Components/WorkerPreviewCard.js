@@ -14,13 +14,18 @@ function WorkerPreviewCard({
 
   async function deleteWorkerFromList() {
     await deleteApiMethodResponse(id)
-    getWorkers(setWorkerList)
+    getAndSetWorkers()
   }
 
   async function workerStateSwitcher(id) {
     worker.active = !worker.active
     await putApiMethodResponse(id, worker)
-    getWorkers(setWorkerList)
+    getAndSetWorkers()
+  }
+
+  async function getAndSetWorkers() {
+    const totalWorkers = await getWorkers()
+    setWorkerList(totalWorkers)
   }
 
   return (
