@@ -1,3 +1,8 @@
+
+// La URL es la misma en todas, seria bien ponerla aqui
+// const API_URL = "https://reqres.in/api/"
+// Luego donde vayas a usarla ya añadiras el resto de info
+
 async function getListApiMethod1() {
   const URL = "https://reqres.in/api/users?page=1"
   return fetch(URL)
@@ -14,6 +19,9 @@ async function getListApiMethod2() {
     .catch((error) => console.log(error))
 }
 
+
+// Los nombres se pueden mejorar mucho. Solo tienes que decir lo que hace (Borrar usuario) y no apiMethodResponse que seria algo relacionado con el como lo haces.
+// async function deleteWorker(id)
 async function deleteApiMethodResponse(id) {
   const URL = `https://reqres.in/api/users/${id}`
   const myInit = {

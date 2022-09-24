@@ -29,6 +29,7 @@ function WorkerDetail({
   let queryId = query.get("id")
 
   useEffect(() => {
+  // Esta llamada tambien deberia estar en nuestra API, en el archivo. 
     const userUrl = `https://reqres.in/api/users/${queryId}`
     const thereIsNoWorkerDetail = !workerDetail.hasOwnProperty("id")
     if (thereIsNoWorkerDetail) {

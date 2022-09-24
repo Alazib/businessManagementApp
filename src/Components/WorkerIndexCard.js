@@ -12,6 +12,13 @@ function WorkerIndexCard({ workerDetail }) {
           <br></br>
           {name}
         </div>
+        {/*<div>
+          <b>Name:</b>
+          // En vez de br's, puedes al title darle un margin-top, es mejor practica
+          <br></br>
+          // Las palabras o textos en general no van sueltos dentro de los DIV, ponlos siempre dentro de un span o p, según corresponda.
+          <span className="title">{name}</span>
+        </div> */}
         <br></br>
         <div>
           <b>Age:</b>
