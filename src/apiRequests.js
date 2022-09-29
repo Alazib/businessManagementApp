@@ -1,21 +1,23 @@
-async function getListApiMethod1() {
-  const URL = "https://reqres.in/api/users?page=1"
-  return fetch(URL)
+const API_URL = "https://reqres.in/api/"
+
+async function getList1() {
+  const URL_LIST1 = `${API_URL}users?page=1`
+  return fetch(URL_LIST1)
     .then((response) => response.json())
     .then((data) => data.data)
     .catch((error) => console.log(error))
 }
 
-async function getListApiMethod2() {
-  const URL = "https://reqres.in/api/users?page=2"
-  return fetch(URL)
+async function getList2() {
+  const URL_LIST2 = `${API_URL}users?page=2`
+  return fetch(URL_LIST2)
     .then((response) => response.json())
     .then((data) => data.data)
     .catch((error) => console.log(error))
 }
 
-async function deleteApiMethodResponse(id) {
-  const URL = `https://reqres.in/api/users/${id}`
+async function deleteWorker(id) {
+  const URL_USER = `${API_URL}users/${id}`
   const myInit = {
     method: "DELETE",
     headers: {
@@ -23,13 +25,13 @@ async function deleteApiMethodResponse(id) {
     },
   }
 
-  return fetch(URL, myInit)
+  return fetch(URL_USER, myInit)
     .then((response) => response.json())
     .catch((error) => console.log(error))
 }
 
-async function putApiMethodResponse(id, newData) {
-  const URL = `https://reqres.in/api/users/${id}`
+async function putNewDataInWorker(id, newData) {
+  const URL_USER = `${API_URL}users/${id}`
   const myInit = {
     method: "PUT",
     headers: {
@@ -37,13 +39,13 @@ async function putApiMethodResponse(id, newData) {
     },
     body: JSON.stringify(newData),
   }
-  return fetch(URL, myInit)
+  return fetch(URL_USER, myInit)
     .then((response) => response.json())
     .catch((error) => console.log(error))
 }
 
-async function postApiMethodResponse(newWorker) {
-  const URL = "https://reqres.in/api/users?page=1"
+async function postNewWorker(newWorker) {
+  const URL_LIST1 = `${API_URL}users?page=1`
   const myInit = {
     method: "POST",
     headers: {
@@ -51,15 +53,23 @@ async function postApiMethodResponse(newWorker) {
     },
     body: JSON.stringify(newWorker),
   }
-  return fetch(URL, myInit)
+  return fetch(URL_LIST1, myInit)
     .then((response) => response.json())
     .catch((error) => console.log(error))
 }
 
+async function recoverWorkerDetail(queryId) {
+  const URL_USER = `${API_URL}users/${queryId}`
+  return fetch(URL_USER)
+    .then((response) => response.json())
+    .then((data) => data.data)
+}
+
 export {
-  getListApiMethod1,
-  getListApiMethod2,
-  deleteApiMethodResponse,
-  putApiMethodResponse,
-  postApiMethodResponse,
+  getList1,
+  getList2,
+  deleteWorker,
+  putNewDataInWorker,
+  postNewWorker,
+  recoverWorkerDetail,
 }

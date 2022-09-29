@@ -1,3 +1,5 @@
+import "../styles/WorkerIndexCard.css"
+
 function WorkerIndexCard({ workerDetail }) {
   const { first_name, last_name, age, phone, email, address, active } =
     workerDetail
@@ -8,41 +10,41 @@ function WorkerIndexCard({ workerDetail }) {
     <>
       <div className="name-age-number-email-adress-state">
         <div>
-          <b>Name:</b>
-          <br></br>
-          {name}
+          <span>
+            <b>Name:</b>
+          </span>
+          <p>{name}</p>
         </div>
-        <br></br>
         <div>
-          <b>Age:</b>
-          <br></br>
-          {age}
+          <span>
+            <b>Age:</b>
+          </span>
+          <p>{age}</p>
         </div>
-        <br></br>
         <div>
-          <b>Phone number:</b>
-          <br></br>
-          {phone}
+          <span>
+            <b>Phone number:</b>
+          </span>
+          <p>{phone}</p>
         </div>
-        <br></br>
         <div>
-          <b>Email:</b>
-          <br></br>
-          {email}
+          <span>
+            <b>Email:</b>
+          </span>
+          <p>{email}</p>
         </div>
-        <br></br>
         <div>
-          <b>Address:</b>
-          <br></br>
-          {address}
+          <span>
+            <b>Address:</b>
+          </span>
+          <p>{address}</p>
         </div>
-        <br></br>
         <div>
-          <b>Worker state:</b>
-          <br></br>
-          {active ? "Active" : "Non active"}
+          <span>
+            <b>Worker state:</b>
+          </span>
+          <p>{active ? "Active" : "Non active"}</p>
         </div>
-        <br></br>
       </div>
     </>
   )

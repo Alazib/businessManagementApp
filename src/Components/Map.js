@@ -28,7 +28,7 @@ function Map({ avatar }) {
     <div className="map" style={{ height: "350px", width: "550px" }}>
       {defaultProps.hasOwnProperty("zoom") && (
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCE1ZWV7oXqhdSockdmAfSx6tL6FVRfoIM" }}
+          bootstrapURLKeys={{ key: "" }}
           defaultCenter={center}
           defaultZoom={zoom}
         >

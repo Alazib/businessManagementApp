@@ -1,8 +1,8 @@
-import { getListApiMethod1, getListApiMethod2 } from "./apiRequests"
+import { getList1, getList2 } from "./apiRequests"
 
 async function getWorkers() {
-  const list1 = await getListApiMethod1()
-  const list2 = await getListApiMethod2()
+  const list1 = await getList1()
+  const list2 = await getList2()
   const totalWorkers = [...list1, ...list2]
   provisionalSolutionForTheLackofDatabase(totalWorkers)
   return totalWorkers

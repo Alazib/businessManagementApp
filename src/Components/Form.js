@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react"
-import Button from "./Button"
+import Button from "./Button/Button"
 import Input from "./Input"
-import { putApiMethodResponse } from "../apiRequests"
+import { putNewDataInWorker } from "../apiRequests"
 import getWorkers from "../getWorkers"
 import "../styles/Form.css"
 
@@ -27,7 +27,7 @@ function Form({
 
   async function sendInputData(event) {
     event.preventDefault()
-    await putApiMethodResponse(id, data)
+    await putNewDataInWorker(id, data)
     getAndSetWorkers()
     saveUpdatingandCloseForm()
   }

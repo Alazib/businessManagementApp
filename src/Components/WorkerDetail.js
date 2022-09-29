@@ -2,8 +2,12 @@ import { useEffect, useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { useMemo } from "react"
 import Form from "./Form"
-import Button from "./Button"
-import { deleteApiMethodResponse, putApiMethodResponse } from "../apiRequests"
+import Button from "./Button/Button"
+import {
+  deleteWorker,
+  putNewDataInWorker,
+  recoverWorkerDetail,
+} from "../apiRequests"
 import getWorkers from "../getWorkers"
 import "../styles/WorkerDetail.css"
 import WorkerIndexCard from "./WorkerIndexCard"
@@ -29,30 +33,33 @@ function WorkerDetail({
   let queryId = query.get("id")
 
   useEffect(() => {
-    const userUrl = `https://reqres.in/api/users/${queryId}`
     const thereIsNoWorkerDetail = !workerDetail.hasOwnProperty("id")
     if (thereIsNoWorkerDetail) {
-      fetch(userUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          const workerDetailRecovered = data.data
-          setWorkerDetail(workerDetailRecovered)
-        })
+      recoveringWorkerDetail()
     }
   }, [])
 
+  async function recoveringWorkerDetail() {
+    const workerDetailRecovered = await recoverWorkerDetail(
+      queryId,
+      workerDetail
+    )
+    setWorkerDetail(workerDetailRecovered)
+  }
+
   async function workerStateSwitcher(id) {
     workerDetail.active = !workerDetail.active
-    await putApiMethodResponse(id, workerDetail)
+    await putNewDataInWorker(id, workerDetail)
     getAndSetWorkers()
   }
+
   async function getAndSetWorkers() {
     const totalWorkers = await getWorkers()
     setWorkerList(totalWorkers)
   }
 
   async function deleteWorkerAndBackToList() {
-    await deleteApiMethodResponse(id)
+    await deleteWorker(id)
     navigate("/worker-list")
   }
   const navigate = useNavigate()

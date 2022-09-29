@@ -1,7 +1,7 @@
 import Input from "./Input"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { postApiMethodResponse } from "../apiRequests"
+import { postNewWorker } from "../apiRequests"
 import newUserAvatar from "../images/new-user.png"
 import "../styles/Form.css"
 
@@ -14,7 +14,7 @@ function NewWorker() {
 
   async function sendInputData(event) {
     event.preventDefault()
-    await postApiMethodResponse(newWorker)
+    await postNewWorker(newWorker)
     navigate("/worker-list")
   }
   const navigate = useNavigate()

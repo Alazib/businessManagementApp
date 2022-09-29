@@ -4,6 +4,7 @@
   border: thin solid black;
   border-radius: 30px;
   background-color: rgba(112, 105, 105, 0.6);
+  width: 250px;
 }
 
 .worker-preview-card-and-buttons:hover {
@@ -17,8 +18,10 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.worker-preview-card-image {
+.worker-preview-card-image > img {
   margin-top: 15px;
+  height: 132px;
+  width: 136px;
 }
 
 .worker-preview-card-image > img {

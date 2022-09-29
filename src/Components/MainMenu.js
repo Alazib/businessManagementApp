@@ -1,4 +1,4 @@
-import photo from "../image.png"
+import photo from "../images/image.png"
 
 function MainMenu() {
   return (

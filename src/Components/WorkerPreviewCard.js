@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import Button from "./Button"
-import { deleteApiMethodResponse, putApiMethodResponse } from "../apiRequests"
+import Button from "./Button/Button"
+import { deleteWorker, putNewDataInWorker } from "../apiRequests"
 import getWorkers from "../getWorkers"
 import "../styles/WorkerPreviewCard.css"
 
@@ -13,13 +13,13 @@ function WorkerPreviewCard({
   const { id, avatar, first_name, last_name } = worker
 
   async function deleteWorkerFromList() {
-    await deleteApiMethodResponse(id)
+    await deleteWorker(id)
     getAndSetWorkers()
   }
 
   async function workerStateSwitcher(id) {
     worker.active = !worker.active
-    await putApiMethodResponse(id, worker)
+    await putNewDataInWorker(id, worker)
     getAndSetWorkers()
   }
 

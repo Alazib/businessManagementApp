@@ -1,4 +1,4 @@
-import "../styles/Button.css"
+import "./Button.css"
 
 function Button({ onClick, label, size }) {
   return (
