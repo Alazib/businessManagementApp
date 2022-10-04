@@ -117,7 +117,13 @@ function Form({
         </div>
         <br></br>
         <div className="buttons-save-exit">
-          <button type="submit">Save</button>
+          <Button
+            type="submit"
+            label="Save"
+            onClick={() => {
+              return
+            }}
+          ></Button>
           <Button onClick={cancelUpdatingAndCloseForm} label="Exit"></Button>
         </div>
       </form>
