@@ -29,72 +29,58 @@ function NewWorker() {
             alt="new user"
           ></img>
           <div>
-            <div>
+            <label>
               <b>Name:</b>
-              <br></br>
-            </div>
+            </label>
             <Input
               placeholder="first name"
               name="first_name"
               onChange={handleInputChange}
-            ></Input>
+            />
           </div>
           <div>
             <Input
               placeholder="last name"
               name="last_name"
               onChange={handleInputChange}
-            ></Input>
+            />
           </div>
           <div>
-            <br></br>
-            <b>Age:</b>
-            <br></br>
+            <label>
+              <b>Age:</b>
+            </label>
+            <Input placeholder="age" name="age" onChange={handleInputChange} />
           </div>
           <div>
-            <Input
-              placeholder="age"
-              name="age"
-              onChange={handleInputChange}
-            ></Input>
-          </div>
-          <div>
-            <br></br>
-            <b>Phone:</b>
-            <br></br>
-          </div>
-          <div>
+            <label>
+              <b>Phone:</b>
+            </label>
             <Input
               placeholder="phone"
               name="phone"
               onChange={handleInputChange}
-            ></Input>
-          </div>
-          <br></br>
-          <div>
-            <b>Email:</b>
-            <br></br>
+            />
           </div>
           <div>
+            <label>
+              <b>Email:</b>
+            </label>
             <Input
               placeholder="email"
               name="email"
               onChange={handleInputChange}
-            ></Input>
-          </div>
-          <br></br>
-          <div>
-            <b>Address:</b>
-            <br></br>
+            />
           </div>
           <div>
+            <label>
+              <b>Address:</b>
+            </label>
             <Input
               placeholder="address"
               name="address"
               onChange={handleInputChange}
-            ></Input>
+            />
           </div>
-          <br></br>
           <div className="buttons-save-exit">
             <button type="submit">Save</button>
           </div>

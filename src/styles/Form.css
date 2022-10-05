@@ -23,6 +23,13 @@
   position: relative;
   margin: auto;
 }
+.new-worker > div {
+  margin-bottom: 10px;
+}
+.new-worker input {
+  margin-top: 5px;
+}
+
 .form-container {
   padding-top: 100px;
   padding-bottom: 200px;
