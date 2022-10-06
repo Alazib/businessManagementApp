@@ -31,13 +31,10 @@ describe("The notice 'COMING SOON . . .' should be rendered on all these compone
 
 describe("The form to add a new worker:", () => {
   const renderNewWorkerComponent = () => {
-    // Tengo que envolver la renderización en un BrowserRouter debido a que el componente que quiero renderizar
-    // (NewWoker) usa el hook useNavigate() de ReactRouter y este solo puede ser ejecutado dentro del contexto
-    // de BrowserRouter
     render(
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<NewWorker></NewWorker>}></Route>
+          <Route path="" element={<NewWorker />}></Route>
         </Routes>
       </BrowserRouter>
     )
@@ -45,13 +42,14 @@ describe("The form to add a new worker:", () => {
 
   test("should render the 6 form inputs", () => {
     renderNewWorkerComponent()
-    // ¿No sería mejor usar getByRole?
-    const inputFirstName = screen.getByPlaceholderText(/first name/i)
-    const inputLastName = screen.getByPlaceholderText(/last name/i)
+
+    const inputFirstName = screen.getByRole("input", { name: /first_name/i })
+    const inputLastName = screen.getByPlaceholderText(/last_name/i)
     const inputAge = screen.getByPlaceholderText(/age/i)
     const inputPhone = screen.getByPlaceholderText(/phone/i)
     const inputEmail = screen.getByPlaceholderText(/email/i)
     const inputAddress = screen.getByPlaceholderText(/address/i)
+
     expect(inputFirstName).toBeInTheDocument()
     expect(inputLastName).toBeInTheDocument()
     expect(inputAge).toBeInTheDocument()
