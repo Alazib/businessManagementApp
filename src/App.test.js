@@ -43,19 +43,12 @@ describe("The form to add a new worker:", () => {
   test("should render the 6 form inputs", () => {
     renderNewWorkerComponent()
 
-    const inputFirstName = screen.getByRole("input", { name: /first_name/i })
-    const inputLastName = screen.getByPlaceholderText(/last_name/i)
-    const inputAge = screen.getByPlaceholderText(/age/i)
-    const inputPhone = screen.getByPlaceholderText(/phone/i)
-    const inputEmail = screen.getByPlaceholderText(/email/i)
-    const inputAddress = screen.getByPlaceholderText(/address/i)
-
-    expect(inputFirstName).toBeInTheDocument()
-    expect(inputLastName).toBeInTheDocument()
-    expect(inputAge).toBeInTheDocument()
-    expect(inputPhone).toBeInTheDocument()
-    expect(inputEmail).toBeInTheDocument()
-    expect(inputAddress).toBeInTheDocument()
+    const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
+    const inputLastName = screen.getByRole("textbox", { name: "Last name:" })
+    const inputAge = screen.getByRole("textbox", { name: "Age:" })
+    const inputPhone = screen.getByRole("textbox", { name: "Phone:" })
+    const inputEmail = screen.getByRole("textbox", { name: "Email:" })
+    const inputAddress = screen.getByRole("textbox", { name: "Address:" })
   })
 
   test("should render the button 'save'", () => {

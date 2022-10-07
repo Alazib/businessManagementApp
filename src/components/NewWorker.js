@@ -2,6 +2,7 @@ import Input from "./Input"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { postNewWorker } from "../apiRequests"
+import Label from "./Label"
 import newUserAvatar from "../images/new-user.png"
 import "../styles/Form.css"
 
@@ -29,53 +30,54 @@ function NewWorker() {
             alt="new user"
           ></img>
           <div>
-            <label>
-              <b>Name:</b>
-            </label>
+            <Label htmlFor={"firstName"} text="First name:" />
             <Input
+              id="firstName"
               placeholder="first name"
               name="first_name"
               onChange={handleInputChange}
             />
           </div>
           <div>
+            <Label htmlFor={"lastName"} text="Last name:" />
             <Input
+              id="lastName"
               placeholder="last name"
               name="last_name"
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <label>
-              <b>Age:</b>
-            </label>
-            <Input placeholder="age" name="age" onChange={handleInputChange} />
+            <Label htmlFor={"age"} text="Age:" />
+            <Input
+              id="age"
+              placeholder="age"
+              name="age"
+              onChange={handleInputChange}
+            />
           </div>
           <div>
-            <label>
-              <b>Phone:</b>
-            </label>
+            <Label htmlFor={"phone"} text="Phone:" />
             <Input
+              id="phone"
               placeholder="phone"
               name="phone"
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <label>
-              <b>Email:</b>
-            </label>
+            <Label htmlFor={"email"} text="Email:" />
             <Input
+              id="email"
               placeholder="email"
               name="email"
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <label>
-              <b>Address:</b>
-            </label>
+            <Label htmlFor={"address"} text="Address:" />
             <Input
+              id="address"
               placeholder="address"
               name="address"
               onChange={handleInputChange}
