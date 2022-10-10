@@ -54,7 +54,11 @@ async function postNewWorker(newWorker) {
     body: JSON.stringify(newWorker),
   }
   return fetch(URL_LIST1, myInit)
-    .then((response) => response.json())
+    .then((response) => {
+    // ESTO LO VEREMOS EN CLASE
+    if(!response) return 
+    response.json()
+})
     .catch((error) => console.log(error))
 }
 

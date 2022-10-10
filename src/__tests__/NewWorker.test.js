@@ -3,7 +3,23 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NewWorker from "../../src/components/NewWorker"
 import user from "@testing-library/user-event"
 
-test("should mock fetch and call it", () => {
+
+
+// Esto Lo he sacado de buscar: "mock react-router-dom"
+// Si solo mockeaba useNavigate() me reventaba.
+jest.mock('react-router-dom', () => {
+  // Require the original module to not be mocked...
+  const originalModule = jest.requireActual('react-router-dom');
+
+  return {
+    __esModule: true,
+    ...originalModule,
+    // add your noops here
+    useNavigate: jest.fn()
+  };
+});
+
+test("should mock fetch and call it", async () => {
   // global.fetch = jest.fn()
   //¿Por qué esto me da un error: "UnhandledPromiseRejection:.....""?
 
@@ -22,6 +38,7 @@ test("should mock fetch and call it", () => {
   const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
   const saveButton = screen.getByRole("button", { name: "Save" })
 
+  await screen.findByRole("textbox", { name: "First name:" })
   user.type(inputFirstName, "Ulises")
   user.click(saveButton)
   expect(jestSpy).toBeCalled()
@@ -48,8 +65,7 @@ test("should call mock fetch with 'apiUrl' and 'newData'", () => {
     </BrowserRouter>
   )
 
-  const inputFirstName = screen.getByRole("textbox", { name: "First name:" }) //¿Por qué esto aquí da error si en el
-  // primer test funcionaba?
+  const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
   const saveButton = screen.getByRole("button", { name: "Save" })
 
   user.type(inputFirstName, "Ulises")
