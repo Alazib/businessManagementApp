@@ -27,7 +27,15 @@ test("should mock fetch and call it", () => {
   expect(jestSpy).toBeCalled()
 })
 
-test("should call fetch with the object {first_name: 'Ulises'}", () => {
+test("should call mock fetch with 'apiUrl' and 'newData'", () => {
+  const apiUrl = "https://reqres.in/api/users?page=1"
+  const newData = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ first_name: "Ulises" }),
+  }
   const jestSpy = jest
     .spyOn(global, "fetch")
     .mockImplementationOnce(() => Promise.resolve())
@@ -46,5 +54,5 @@ test("should call fetch with the object {first_name: 'Ulises'}", () => {
 
   user.type(inputFirstName, "Ulises")
   user.click(saveButton)
-  expect(jestSpy).toBeCalledWith({ first_name: "Ulises" })
+  expect(jestSpy).toBeCalledWith(apiUrl, newData)
 })
