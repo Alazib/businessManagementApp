@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Contact from "./components/Contact"
-import Inventory from "./components/Inventory"
-import MarketSurveys from "./components/MarketSurveys"
-import NewWorker from "./components/NewWorker"
+import Contact from "../../src/components/Contact"
+import Inventory from "../../src/components/Inventory"
+import MarketSurveys from "../../src/components/MarketSurveys"
+import NewWorker from "../../src/components/NewWorker"
 
 describe("The notice 'COMING SOON . . .' should be rendered on all these components:", () => {
   function provisionalNoticeScreener() {
@@ -53,7 +53,6 @@ describe("The form to add a new worker:", () => {
 
   test("should render the button 'save'", () => {
     renderNewWorkerComponent()
-    const inputSaveButton = screen.getByRole("button", { name: /save/i })
-    expect(inputSaveButton).toBeInTheDocument()
+    const saveButton = screen.getByRole("button", { name: /save/i })
   })
 })
