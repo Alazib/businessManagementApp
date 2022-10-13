@@ -3,56 +3,66 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NewWorker from "../../src/components/NewWorker"
 import user from "@testing-library/user-event"
 
-test("should mock fetch and call it", () => {
-  // global.fetch = jest.fn()
-  //¿Por qué esto me da un error: "UnhandledPromiseRejection:.....""?
+describe("when the user create a new worker", () => {
+  it("fetch should send the input data", () => {
+    render(
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<NewWorker />}></Route>
+        </Routes>
+      </BrowserRouter>
+    )
 
-  const jestSpy = jest
-    .spyOn(global, "fetch")
-    .mockImplementationOnce(() => Promise.resolve()) // ¿Por qué esto sí que funciona? ¿Qué es el error
-  // act(()=>{} que me da?)
+    jest.mock("react-router-dom", () => {
+      const originalModule = jest.requireActual("react-router-dom")
 
-  render(
-    <BrowserRouter>
-      <Routes>
-        <Route path="" element={<NewWorker />}></Route>
-      </Routes>
-    </BrowserRouter>
-  )
-  const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
-  const saveButton = screen.getByRole("button", { name: "Save" })
+      return {
+        __esModule: true,
+        ...originalModule,
+        useNavigate: jest.fn(),
+      }
+    })
+    // 1) ¿Por qué me sigue dando el error de Act después de hacer esto?
 
-  user.type(inputFirstName, "Ulises")
-  user.click(saveButton)
-  expect(jestSpy).toBeCalled()
-})
+    const apiUrl = "https://reqres.in/api/users?page=1"
+    const newData = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: "Ulysses",
+        last_name: "Odysseus",
+        age: "45",
+        phone: "666 66 00 66",
+        email: "ulysses@gmail.com",
+        address: "Ithaca",
+      }),
+    }
 
-test("should call mock fetch with 'apiUrl' and 'newData'", () => {
-  const apiUrl = "https://reqres.in/api/users?page=1"
-  const newData = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ first_name: "Ulises" }),
-  }
-  const jestSpy = jest
-    .spyOn(global, "fetch")
-    .mockImplementationOnce(() => Promise.resolve())
+    const spyFetch = jest
+      .spyOn(global, "fetch")
+      .mockImplementationOnce(() => Promise.resolve(apiUrl, newData))
+    // 1) El mockImplementationOnce no está bien así ¿no?. No entiendo muy bien el rollo de las promesas
+    //2)Si no pongo .mockImplementationOnce funciona igualmente ¿es porque, al usar spyOn, se sigue conservando la implementación
+    // original y, entonces, está llamando a reqrest?
 
-  render(
-    <BrowserRouter>
-      <Routes>
-        <Route path="" element={<NewWorker />}></Route>
-      </Routes>
-    </BrowserRouter>
-  )
+    const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
+    const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
+    const ageInput = screen.getByRole("textbox", { name: /age/i })
+    const phoneInput = screen.getByRole("textbox", { name: /phone/i })
+    const emailInput = screen.getByRole("textbox", { name: /email/i })
+    const addressInput = screen.getByRole("textbox", { name: /address/i })
+    const submitButton = screen.getByRole("button", { name: /save/i })
 
-  const inputFirstName = screen.getByRole("textbox", { name: "First name:" }) //¿Por qué esto aquí da error si en el
-  // primer test funcionaba?
-  const saveButton = screen.getByRole("button", { name: "Save" })
+    user.type(firstNameInput, "Ulysses")
+    user.type(lastNameInput, "Odysseus")
+    user.type(ageInput, "45")
+    user.type(phoneInput, "666 66 00 66")
+    user.type(emailInput, "ulysses@gmail.com")
+    user.type(addressInput, "Ithaca")
+    user.click(submitButton)
 
-  user.type(inputFirstName, "Ulises")
-  user.click(saveButton)
-  expect(jestSpy).toBeCalledWith(apiUrl, newData)
+    expect(spyFetch).toHaveBeenCalledWith(apiUrl, newData)
+  })
 })
