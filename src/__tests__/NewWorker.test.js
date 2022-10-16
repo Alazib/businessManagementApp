@@ -13,9 +13,19 @@ jest.mock("react-router-dom", () => {
   }
 })
 
-const spyFetch = jest
-  .spyOn(global, "fetch")
-  .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
+jest.spyOn(global, "fetch")
+
+// global.fetch = jest.fn()
+
+// global.fetch = () => {
+//   return {
+//     then: () => {
+//       return { catch: () => {} }
+//     },
+//   }
+// }
+// Ese mock no funciona, pues el toHaveBeenCalled me dice que necesita un spy o un mock.
+// Imagino que al hacer un mock manual no lo reconoce como tal.
 
 describe("when the user create a new worker", () => {
   it("fetch should send the input data", () => {
@@ -58,7 +68,7 @@ describe("when the user create a new worker", () => {
     user.type(addressInput, "Ithaca")
     user.click(submitButton)
 
-    expect(spyFetch).toHaveBeenCalled()
+    expect(fetch).toHaveBeenCalled()
   })
 
   // it("after send user data, useNavigate() is called", async () => {
