@@ -3,19 +3,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NewWorker from "../../src/components/NewWorker"
 import user from "@testing-library/user-event"
 
-jest.mock("react-router-dom", () => {
-  const originalModule = jest.requireActual("react-router-dom")
+// jest.mock("react-router-dom", () => {
+//   const originalModule = jest.requireActual("react-router-dom")
 
-  return {
-    __esModule: true,
-    ...originalModule,
-    useNavigate: jest.fn().mockImplementation(() => {}),
-  }
-})
+//   return {
+//     __esModule: true,
+//     ...originalModule,
+//     useNavigate: jest.fn().mockImplementation(() => {}),
+//   }
+// })
 
-jest.spyOn(global, "fetch")
-
-// global.fetch = jest.fn()
+jest.spyOn(global, "fetch").mockImplementationOnce(() => {})
+// ¿Por qué funciona el toHaveBeenCalledWith() si aquí he vaciado la función fetch?
 
 // global.fetch = () => {
 //   return {
@@ -36,21 +35,6 @@ describe("when the user create a new worker", () => {
         </Routes>
       </BrowserRouter>
     )
-    // const apiUrl = "https://reqres.in/api/users?page=1"
-    // const newData = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     first_name: "Ulysses",
-    //     last_name: "Odysseus",
-    //     age: "45",
-    //     phone: "666 66 00 66",
-    //     email: "ulysses@gmail.com",
-    //     address: "Ithaca",
-    //   }),
-    // }
 
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
@@ -68,21 +52,38 @@ describe("when the user create a new worker", () => {
     user.type(addressInput, "Ithaca")
     user.click(submitButton)
 
-    expect(fetch).toHaveBeenCalled()
+    expect(fetch).toHaveBeenCalledWith("https://reqres.in/api/users?page=1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: "Ulysses",
+        last_name: "Odysseus",
+        age: "45",
+        phone: "666 66 00 66",
+        email: "ulysses@gmail.com",
+        address: "Ithaca",
+      }),
+    })
   })
 
-  // it("after send user data, useNavigate() is called", async () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <Routes>
-  //         <Route path="" element={<NewWorker />}></Route>
-  //       </Routes>
-  //     </BrowserRouter>
-  //   )
+  it("after send user data, useNavigate() is called to go to Worker List", async () => {
+    render(
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<NewWorker />}></Route>
+        </Routes>
+      </BrowserRouter>
+    )
 
-  //   const submitButton = screen.getByRole("button", { name: /save/i })
-  //   user.click(submitButton)
+    const submitButton = screen.getByRole("button", { name: /save/i })
+    user.click(submitButton)
 
-  //   expect(await screen.findByText(/delete/i)).toBeInTheDocument()
-  // })
+    const deleteListButton = await screen.findAllByRole("button", {
+      name: /delete/i,
+    })
+
+    // expect(deleteListButton).toBeInTheDocument()
+  })
 })
