@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NewWorker from "../../src/components/NewWorker"
+import App from "../components/App"
+import HeaderNavBar from "../components/HeaderNavBar"
 import user from "@testing-library/user-event"
 
 // jest.mock("react-router-dom", () => {
@@ -14,7 +16,13 @@ import user from "@testing-library/user-event"
 // })
 
 jest.spyOn(global, "fetch").mockImplementationOnce(() => {})
-// ¿Por qué funciona el toHaveBeenCalledWith() si aquí he vaciado la función fetch?
+// DUDA 1)
+//¿Por qué funciona el toHaveBeenCalledWith() si aquí he vaciado la función fetch? Si hago "global.fetch = jest.fn()"
+// también funciona
+
+// DUDA 2)
+//   jest.spyOn(global, "fetch")
+//   .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
 
 // global.fetch = () => {
 //   return {
@@ -23,6 +31,7 @@ jest.spyOn(global, "fetch").mockImplementationOnce(() => {})
 //     },
 //   }
 // }
+// DUDA 3)
 // Ese mock no funciona, pues el toHaveBeenCalled me dice que necesita un spy o un mock.
 // Imagino que al hacer un mock manual no lo reconoce como tal.
 
@@ -32,9 +41,19 @@ describe("when the user create a new worker", () => {
       <BrowserRouter>
         <Routes>
           <Route path="" element={<NewWorker />}></Route>
+          {/* DUDA 4)
+          ¿Por qué si pongo el path "new-worker" no funciona? */}
         </Routes>
       </BrowserRouter>
     )
+
+    //  render(
+    //   <BrowserRouter>
+    //     <NewWorker></NewWorker>
+    //   </BrowserRouter>
+    // )
+    // DUDA 5
+    // ¿Por qué también funciona esto?
 
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
@@ -71,19 +90,24 @@ describe("when the user create a new worker", () => {
   it("after send user data, useNavigate() is called to go to Worker List", async () => {
     render(
       <BrowserRouter>
-        <Routes>
-          <Route path="" element={<NewWorker />}></Route>
-        </Routes>
+        <HeaderNavBar />
+        <App></App>
       </BrowserRouter>
     )
+    // DUDA 6) ¿La app entera la cargo así?
 
-    const submitButton = screen.getByRole("button", { name: /save/i })
+    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
+    user.click(newWorkerLink)
+
+    const submitButton = await screen.findByRole("button", { name: /save/i })
     user.click(submitButton)
 
-    const deleteListButton = await screen.findAllByRole("button", {
-      name: /delete/i,
-    })
+    screen.debug()
+    // DUDA 7)
+    // ¿Por qué no me ha dirigido a WorkerList?
 
-    // expect(deleteListButton).toBeInTheDocument()
+    // const deleteListButton = await screen.findAllByRole("button", {
+    //   name: /delete/i,
+    // })
   })
 })
