@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, json } from "react-router-dom"
 import NewWorker from "../../src/components/NewWorker"
 import App from "../components/App"
 import HeaderNavBar from "../components/HeaderNavBar"
 import user from "@testing-library/user-event"
+import getWorkers from "../getWorkers"
 
 // jest.mock("react-router-dom", () => {
 //   const originalModule = jest.requireActual("react-router-dom")
@@ -15,45 +16,16 @@ import user from "@testing-library/user-event"
 //   }
 // })
 
-jest.spyOn(global, "fetch").mockImplementationOnce(() => {})
-// DUDA 1)
-//¿Por qué funciona el toHaveBeenCalledWith() si aquí he vaciado la función fetch? Si hago "global.fetch = jest.fn()"
-// también funciona
-
-// DUDA 2)
-//   jest.spyOn(global, "fetch")
-//   .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
-
-// global.fetch = () => {
-//   return {
-//     then: () => {
-//       return { catch: () => {} }
-//     },
-//   }
-// }
-// DUDA 3)
-// Ese mock no funciona, pues el toHaveBeenCalled me dice que necesita un spy o un mock.
-// Imagino que al hacer un mock manual no lo reconoce como tal.
-
 describe("when the user create a new worker", () => {
   it("fetch should send the input data", () => {
     render(
       <BrowserRouter>
-        <Routes>
-          <Route path="" element={<NewWorker />}></Route>
-          {/* DUDA 4)
-          ¿Por qué si pongo el path "new-worker" no funciona? */}
-        </Routes>
+        <NewWorker></NewWorker>
       </BrowserRouter>
     )
-
-    //  render(
-    //   <BrowserRouter>
-    //     <NewWorker></NewWorker>
-    //   </BrowserRouter>
-    // )
-    // DUDA 5
-    // ¿Por qué también funciona esto?
+    global.fetch = jest
+      .fn()
+      .mockImplementation(() => Promise.resolve({ json: jest.fn() }))
 
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
@@ -94,7 +66,10 @@ describe("when the user create a new worker", () => {
         <App></App>
       </BrowserRouter>
     )
-    // DUDA 6) ¿La app entera la cargo así?
+
+    global.fetch = jest
+      .fn()
+      .mockImplementation(() => Promise.resolve({ json: jest.fn() }))
 
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
     user.click(newWorkerLink)
@@ -102,12 +77,8 @@ describe("when the user create a new worker", () => {
     const submitButton = await screen.findByRole("button", { name: /save/i })
     user.click(submitButton)
 
-    screen.debug()
-    // DUDA 7)
-    // ¿Por qué no me ha dirigido a WorkerList?
-
-    // const deleteListButton = await screen.findAllByRole("button", {
-    //   name: /delete/i,
-    // })
+    const headingActiveWorkers = await screen.findAllByRole("heading", {
+      name: /active workers: 0/i,
+    })
   })
 })
