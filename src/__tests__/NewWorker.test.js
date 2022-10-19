@@ -1,31 +1,20 @@
 import { render, screen } from "@testing-library/react"
-import { BrowserRouter, json } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import NewWorker from "../../src/components/NewWorker"
 import App from "../components/App"
 import HeaderNavBar from "../components/HeaderNavBar"
 import user from "@testing-library/user-event"
-import getWorkers from "../getWorkers"
-
-// jest.mock("react-router-dom", () => {
-//   const originalModule = jest.requireActual("react-router-dom")
-
-//   return {
-//     __esModule: true,
-//     ...originalModule,
-//     useNavigate: jest.fn().mockImplementation(() => {}),
-//   }
-// })
 
 describe("when the user create a new worker", () => {
   it("fetch should send the input data", () => {
+    global.fetch = jest.fn(() => Promise.resolve({}))
+    // OJO!!! -->  jest.spyOn(global, "fetch") --> Si este primer fetch lo mockeo así, pasan los 2 test.
+
     render(
       <BrowserRouter>
         <NewWorker></NewWorker>
       </BrowserRouter>
     )
-    global.fetch = jest
-      .fn()
-      .mockImplementation(() => Promise.resolve({ json: jest.fn() }))
 
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
@@ -57,6 +46,7 @@ describe("when the user create a new worker", () => {
         address: "Ithaca",
       }),
     })
+    global.fetch = jest.fn(() => Promise.resolve({}))
   })
 
   it("after send user data, useNavigate() is called to go to Worker List", async () => {
@@ -66,11 +56,11 @@ describe("when the user create a new worker", () => {
         <App></App>
       </BrowserRouter>
     )
-
-    global.fetch = jest
-      .fn()
-      .mockImplementation(() => Promise.resolve({ json: jest.fn() }))
-
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve({ data: [{ name: "X" }, { name: "Y" }] }),
+      })
+    )
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
     user.click(newWorkerLink)
 
@@ -82,3 +72,13 @@ describe("when the user create a new worker", () => {
     })
   })
 })
+
+// jest.mock("react-router-dom", () => {
+//   const originalModule = jest.requireActual("react-router-dom")
+
+//   return {
+//     __esModule: true,
+//     ...originalModule,
+//     useNavigate: jest.fn().mockImplementation(() => {}),
+//   }
+// })
