@@ -7,15 +7,15 @@ import user from "@testing-library/user-event"
 
 describe("when the user create a new worker", () => {
   it("fetch should send the input data", () => {
-    global.fetch = jest.fn(() => Promise.resolve({}))
-    // OJO!!! -->  jest.spyOn(global, "fetch") --> Si este primer fetch lo mockeo así, pasan los 2 test.
-
+    global.fetch = jest
+      .fn()
+      //Para la primera (y única) llamada a fetch, el POST de postNewWorker():
+      .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
     render(
       <BrowserRouter>
         <NewWorker></NewWorker>
       </BrowserRouter>
     )
-
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
     const ageInput = screen.getByRole("textbox", { name: /age/i })
@@ -23,7 +23,6 @@ describe("when the user create a new worker", () => {
     const emailInput = screen.getByRole("textbox", { name: /email/i })
     const addressInput = screen.getByRole("textbox", { name: /address/i })
     const submitButton = screen.getByRole("button", { name: /save/i })
-
     user.type(firstNameInput, "Ulysses")
     user.type(lastNameInput, "Odysseus")
     user.type(ageInput, "45")
@@ -31,7 +30,6 @@ describe("when the user create a new worker", () => {
     user.type(emailInput, "ulysses@gmail.com")
     user.type(addressInput, "Ithaca")
     user.click(submitButton)
-
     expect(fetch).toHaveBeenCalledWith("https://reqres.in/api/users?page=1", {
       method: "POST",
       headers: {
@@ -46,21 +44,46 @@ describe("when the user create a new worker", () => {
         address: "Ithaca",
       }),
     })
-    global.fetch = jest.fn(() => Promise.resolve({}))
   })
 
   it("after send user data, useNavigate() is called to go to Worker List", async () => {
+    jest.fn().mockClear()
+    global.fetch = jest
+      .fn()
+      // Para la primera llamada a fetch, el POST de postNewWorker():
+      .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
+      //Para la segunda llamada a fetch, el GET de getList1():
+      .mockImplementationOnce(() =>
+        Promise.resolve({
+          json: () =>
+            Promise.resolve({
+              data: [
+                { first_name: "FIRST 1", last_name: "LAST 1", id: 1 },
+                { first_name: "FIRST 2", last_name: "LAST 2", id: 2 },
+              ],
+            }),
+        })
+      )
+      //Para la tercera llamada a fetch, el GET de getList2():
+      .mockImplementationOnce(() =>
+        Promise.resolve({
+          json: () =>
+            Promise.resolve({
+              data: [
+                { first_name: "FIRST 3", last_name: "LAST 3", id: 3 },
+                { first_name: "FIRST 4", last_name: "LAST 4", id: 4 },
+              ],
+            }),
+        })
+      )
+
     render(
       <BrowserRouter>
         <HeaderNavBar />
         <App></App>
       </BrowserRouter>
     )
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve({ data: [{ name: "X" }, { name: "Y" }] }),
-      })
-    )
+
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
     user.click(newWorkerLink)
 
@@ -68,7 +91,7 @@ describe("when the user create a new worker", () => {
     user.click(submitButton)
 
     const headingActiveWorkers = await screen.findAllByRole("heading", {
-      name: /active workers: 0/i,
+      name: /active workers:/i,
     })
   })
 })

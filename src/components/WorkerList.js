@@ -5,8 +5,14 @@ import "../styles/WorkerList.css"
 
 function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
   async function getAndSetWorkers() {
+    console.log(
+      "Ya estoy en WorkerList y voy a llamar a getWorkers() y a setear el listado"
+    )
     const totalWorkers = await getWorkers()
+
     setWorkerList(totalWorkers)
+
+    console.log("Ya he seteado el listado de workers")
   }
 
   useEffect(() => {
