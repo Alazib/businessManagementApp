@@ -30,6 +30,7 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
   return (
     <>
       <div className="worker-list">
+        <h1>Listado de trabajadores</h1>
         <div className="active-workers">
           <h3>ACTIVE WORKERS: {numberOfActiveWorkers.length}</h3>
           {workerList.map((worker) => {

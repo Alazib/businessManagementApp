@@ -5,17 +5,53 @@ import App from "../components/App"
 import HeaderNavBar from "../components/HeaderNavBar"
 import user from "@testing-library/user-event"
 
+const mockFetch = {
+  json: () =>
+    Promise.resolve({
+      data: [
+        { first_name: "FIRST 1", last_name: "LAST 1", id: 1 },
+        { first_name: "FIRST 2", last_name: "LAST 2", id: 2 },
+      ],
+    }),
+}
+
+const mockFetch2 = {
+  json: () =>
+    Promise.resolve({
+      data: [
+        { first_name: "FIRST 1", last_name: "LAST 1", id: 4 },
+        { first_name: "FIRST 2", last_name: "LAST 2", id: 3 },
+      ],
+    }),
+}
+
+
 describe("when the user create a new worker", () => {
-  it("fetch should send the input data", () => {
+
+  beforeEach(() => {
     global.fetch = jest
-      .fn()
-      //Para la primera (y única) llamada a fetch, el POST de postNewWorker():
-      .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
+    .fn()
+    // Para la primera llamada a fetch, el POST de postNewWorker():
+    .mockImplementationOnce(() => Promise.resolve(mockFetch))
+    //Para la segunda llamada a fetch, el GET de getList1():
+    .mockImplementationOnce(() => Promise.resolve(mockFetch))
+    //Para la tercera llamada a fetch, el GET de getList2():
+    .mockImplementationOnce(() => Promise.resolve(mockFetch2))
+  })
+  
+  it("should create a new worker with all fields", async () => {
+    
     render(
       <BrowserRouter>
-        <NewWorker></NewWorker>
-      </BrowserRouter>
+      <HeaderNavBar />
+      <App></App>
+    </BrowserRouter>
     )
+    
+    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
+    user.click(newWorkerLink)
+    
+    
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
     const ageInput = screen.getByRole("textbox", { name: /age/i })
@@ -44,38 +80,11 @@ describe("when the user create a new worker", () => {
         address: "Ithaca",
       }),
     })
+    
+    await screen.findByRole("heading", { name: 'Listado de trabajadores' })
   })
 
   it("after send user data, useNavigate() is called to go to Worker List", async () => {
-    jest.fn().mockClear()
-    global.fetch = jest
-      .fn()
-      // Para la primera llamada a fetch, el POST de postNewWorker():
-      .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
-      //Para la segunda llamada a fetch, el GET de getList1():
-      .mockImplementationOnce(() =>
-        Promise.resolve({
-          json: () =>
-            Promise.resolve({
-              data: [
-                { first_name: "FIRST 1", last_name: "LAST 1", id: 1 },
-                { first_name: "FIRST 2", last_name: "LAST 2", id: 2 },
-              ],
-            }),
-        })
-      )
-      //Para la tercera llamada a fetch, el GET de getList2():
-      .mockImplementationOnce(() =>
-        Promise.resolve({
-          json: () =>
-            Promise.resolve({
-              data: [
-                { first_name: "FIRST 3", last_name: "LAST 3", id: 3 },
-                { first_name: "FIRST 4", last_name: "LAST 4", id: 4 },
-              ],
-            }),
-        })
-      )
 
     render(
       <BrowserRouter>
@@ -90,18 +99,9 @@ describe("when the user create a new worker", () => {
     const submitButton = await screen.findByRole("button", { name: /save/i })
     user.click(submitButton)
 
-    const headingActiveWorkers = await screen.findAllByRole("heading", {
-      name: /active workers:/i,
-    })
+
+    const titleWorkerList = await screen.findByRole("heading", { name: 'Listado de trabajadores' })
+  
+    expect(titleWorkerList).toBeInTheDocument()
   })
 })
-
-// jest.mock("react-router-dom", () => {
-//   const originalModule = jest.requireActual("react-router-dom")
-
-//   return {
-//     __esModule: true,
-//     ...originalModule,
-//     useNavigate: jest.fn().mockImplementation(() => {}),
-//   }
-// })

@@ -15,9 +15,7 @@ function NewWorker() {
 
   async function sendInputData(event) {
     event.preventDefault()
-    console.log("Voy a entrar en postNewWoker()")
     await postNewWorker(newWorker)
-    console.log("Me dirijo al navigate()")
 
     navigate("/worker-list")
   }
