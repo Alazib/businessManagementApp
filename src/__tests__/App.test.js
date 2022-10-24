@@ -35,7 +35,7 @@ describe("when the app is loaded it should render", () => {
   })
 })
 
-describe("when the user clicks on these links it should be rendered the notice 'COMING SOON. . .'", () => {
+describe("when the user clicks on the following links it should be rendered the notice 'COMING SOON. . .'", () => {
   it("Contact link", () => {
     renderApp()
     const contactLink = screen.getByRole("link", { name: /contact/i })
