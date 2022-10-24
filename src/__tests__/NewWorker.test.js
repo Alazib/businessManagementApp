@@ -1,21 +1,80 @@
+/* eslint-disable no-unused-vars */
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
-import NewWorker from "../../src/components/NewWorker"
 import App from "../components/App"
 import HeaderNavBar from "../components/HeaderNavBar"
 import user from "@testing-library/user-event"
 
-describe("when the user create a new worker", () => {
-  it("fetch should send the input data", () => {
+const mockFetch1 = {
+  json: () =>
+    Promise.resolve({
+      data: [
+        { first_name: "FIRST 1", last_name: "LAST 1", id: 1 },
+        { first_name: "FIRST 2", last_name: "LAST 2", id: 2 },
+      ],
+    }),
+}
+
+const mockFetch2 = {
+  json: () =>
+    Promise.resolve({
+      data: [
+        { first_name: "FIRST 3", last_name: "LAST 3", id: 4 },
+        { first_name: "FIRST 4", last_name: "LAST 4", id: 3 },
+      ],
+    }),
+}
+
+function renderApp() {
+  return render(
+    <BrowserRouter>
+      <HeaderNavBar />
+      <App></App>
+    </BrowserRouter>
+  )
+}
+
+describe("The form to add a new worker:", () => {
+  it("should render the 6 form inputs", () => {
+    renderApp()
+
+    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
+    user.click(newWorkerLink)
+
+    const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
+    const inputLastName = screen.getByRole("textbox", { name: "Last name:" })
+    const inputAge = screen.getByRole("textbox", { name: "Age:" })
+    const inputPhone = screen.getByRole("textbox", { name: "Phone:" })
+    const inputEmail = screen.getByRole("textbox", { name: "Email:" })
+    const inputAddress = screen.getByRole("textbox", { name: "Address:" })
+  })
+
+  it("should render the button 'save'", () => {
+    renderApp()
+    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
+    user.click(newWorkerLink)
+
+    const saveButton = screen.getByRole("button", { name: /save/i })
+  })
+})
+
+describe("when the user creates a new worker", () => {
+  beforeEach(() => {
     global.fetch = jest
       .fn()
-      //Para la primera (y única) llamada a fetch, el POST de postNewWorker():
-      .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
-    render(
-      <BrowserRouter>
-        <NewWorker></NewWorker>
-      </BrowserRouter>
-    )
+      .mockImplementationOnce(() => Promise.resolve(mockFetch1))
+      .mockImplementationOnce(() => Promise.resolve(mockFetch1))
+      .mockImplementationOnce(() => Promise.resolve(mockFetch2))
+      .mockImplementationOnce(() => Promise.resolve(mockFetch2))
+      .mockImplementationOnce(() => Promise.resolve(mockFetch2))
+  })
+
+  it("should create a new worker with all fields", async () => {
+    renderApp()
+
+    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
+    user.click(newWorkerLink)
+
     const firstNameInput = screen.getByRole("textbox", { name: /first name/i })
     const lastNameInput = screen.getByRole("textbox", { name: /last name/i })
     const ageInput = screen.getByRole("textbox", { name: /age/i })
@@ -23,6 +82,7 @@ describe("when the user create a new worker", () => {
     const emailInput = screen.getByRole("textbox", { name: /email/i })
     const addressInput = screen.getByRole("textbox", { name: /address/i })
     const submitButton = screen.getByRole("button", { name: /save/i })
+
     user.type(firstNameInput, "Ulysses")
     user.type(lastNameInput, "Odysseus")
     user.type(ageInput, "45")
@@ -30,6 +90,7 @@ describe("when the user create a new worker", () => {
     user.type(emailInput, "ulysses@gmail.com")
     user.type(addressInput, "Ithaca")
     user.click(submitButton)
+
     expect(fetch).toHaveBeenCalledWith("https://reqres.in/api/users?page=1", {
       method: "POST",
       headers: {
@@ -44,45 +105,12 @@ describe("when the user create a new worker", () => {
         address: "Ithaca",
       }),
     })
+
+    await screen.findAllByRole("heading", { name: /active workers/i })
   })
 
-  it("after send user data, useNavigate() is called to go to Worker List", async () => {
-    jest.fn().mockClear()
-    global.fetch = jest
-      .fn()
-      // Para la primera llamada a fetch, el POST de postNewWorker():
-      .mockImplementationOnce(() => Promise.resolve({ json: jest.fn() }))
-      //Para la segunda llamada a fetch, el GET de getList1():
-      .mockImplementationOnce(() =>
-        Promise.resolve({
-          json: () =>
-            Promise.resolve({
-              data: [
-                { first_name: "FIRST 1", last_name: "LAST 1", id: 1 },
-                { first_name: "FIRST 2", last_name: "LAST 2", id: 2 },
-              ],
-            }),
-        })
-      )
-      //Para la tercera llamada a fetch, el GET de getList2():
-      .mockImplementationOnce(() =>
-        Promise.resolve({
-          json: () =>
-            Promise.resolve({
-              data: [
-                { first_name: "FIRST 3", last_name: "LAST 3", id: 3 },
-                { first_name: "FIRST 4", last_name: "LAST 4", id: 4 },
-              ],
-            }),
-        })
-      )
-
-    render(
-      <BrowserRouter>
-        <HeaderNavBar />
-        <App></App>
-      </BrowserRouter>
-    )
+  it("after send user data, useNavigate() is called to go to WorkerList", async () => {
+    renderApp()
 
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
     user.click(newWorkerLink)
@@ -90,8 +118,8 @@ describe("when the user create a new worker", () => {
     const submitButton = await screen.findByRole("button", { name: /save/i })
     user.click(submitButton)
 
-    const headingActiveWorkers = await screen.findAllByRole("heading", {
-      name: /active workers:/i,
+    await screen.findAllByRole("heading", {
+      name: /active workers/i,
     })
   })
 })

@@ -4,7 +4,7 @@ function MainMenu() {
   return (
     <img
       src={photo}
-      alt="foto"
+      alt="main menu"
       style={{ display: "block", margin: "auto", paddingTop: "100px" }}
     ></img>
   )
