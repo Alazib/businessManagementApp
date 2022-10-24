@@ -19,8 +19,8 @@ const mockFetch2 = {
   json: () =>
     Promise.resolve({
       data: [
-        { first_name: "FIRST 3", last_name: "LAST 3", id: 4 },
-        { first_name: "FIRST 4", last_name: "LAST 4", id: 3 },
+        { first_name: "FIRST 3", last_name: "LAST 3", id: 3 },
+        { first_name: "FIRST 4", last_name: "LAST 4", id: 4 },
       ],
     }),
 }
@@ -29,7 +29,7 @@ function renderApp() {
   return render(
     <BrowserRouter>
       <HeaderNavBar />
-      <App></App>
+      <App />
     </BrowserRouter>
   )
 }
