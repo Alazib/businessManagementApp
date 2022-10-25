@@ -51,4 +51,7 @@ describe("The worker list should render", () => {
   })
 
   it("4 worker cards with these elements in each one: the photo, the name and two buttons", () => {})
+  
+  
+  // Aqui el test es que se renderiza, pillas el titulo y compruebas que aparece FIRST 1 y LAST 1 por ejemplo
 })

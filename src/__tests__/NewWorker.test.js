@@ -40,7 +40,7 @@ describe("The form to add a new worker:", () => {
 
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
     user.click(newWorkerLink)
-
+    // Este test no tiene mucho sentido porque con el siguiente ya lo cubres.
     const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
     const inputLastName = screen.getByRole("textbox", { name: "Last name:" })
     const inputAge = screen.getByRole("textbox", { name: "Age:" })
@@ -51,6 +51,7 @@ describe("The form to add a new worker:", () => {
 
   it("should render the button 'save'", () => {
     renderApp()
+    // Lo mismo que el de arriba, ya cubres este caso
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
     user.click(newWorkerLink)
 
@@ -109,6 +110,8 @@ describe("when the user creates a new worker", () => {
     await screen.findAllByRole("heading", { name: /active workers/i })
   })
 
+// En el it no tienes que dar detalles de implementación. Da igual si es con useNavigate o con otro router, tiene que llevarte a workerlist
+// Y mejor poner worker list haciendo referencia a la vista mas que al componente
   it("after send user data, useNavigate() is called to go to WorkerList", async () => {
     renderApp()
 
