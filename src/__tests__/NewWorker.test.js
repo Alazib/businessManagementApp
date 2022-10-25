@@ -8,20 +8,14 @@ import user from "@testing-library/user-event"
 const mockFetch1 = {
   json: () =>
     Promise.resolve({
-      data: [
-        { first_name: "FIRST 1", last_name: "LAST 1", id: 1 },
-        { first_name: "FIRST 2", last_name: "LAST 2", id: 2 },
-      ],
+      data: [{ first_name: "FIRST 1", last_name: "LAST 1", id: 1 }],
     }),
 }
 
 const mockFetch2 = {
   json: () =>
     Promise.resolve({
-      data: [
-        { first_name: "FIRST 3", last_name: "LAST 3", id: 3 },
-        { first_name: "FIRST 4", last_name: "LAST 4", id: 4 },
-      ],
+      data: [{ first_name: "FIRST 2", last_name: "LAST 2", id: 2 }],
     }),
 }
 
@@ -33,30 +27,6 @@ function renderApp() {
     </BrowserRouter>
   )
 }
-
-describe("The form to add a new worker:", () => {
-  it("should render the 6 form inputs", () => {
-    renderApp()
-
-    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
-    user.click(newWorkerLink)
-
-    const inputFirstName = screen.getByRole("textbox", { name: "First name:" })
-    const inputLastName = screen.getByRole("textbox", { name: "Last name:" })
-    const inputAge = screen.getByRole("textbox", { name: "Age:" })
-    const inputPhone = screen.getByRole("textbox", { name: "Phone:" })
-    const inputEmail = screen.getByRole("textbox", { name: "Email:" })
-    const inputAddress = screen.getByRole("textbox", { name: "Address:" })
-  })
-
-  it("should render the button 'save'", () => {
-    renderApp()
-    const newWorkerLink = screen.getByRole("link", { name: /new worker/i })
-    user.click(newWorkerLink)
-
-    const saveButton = screen.getByRole("button", { name: /save/i })
-  })
-})
 
 describe("when the user creates a new worker", () => {
   beforeEach(() => {
@@ -109,7 +79,7 @@ describe("when the user creates a new worker", () => {
     await screen.findAllByRole("heading", { name: /active workers/i })
   })
 
-  it("after send user data, useNavigate() is called to go to WorkerList", async () => {
+  it("after submit the new user data, worker list is rendered", async () => {
     renderApp()
 
     const newWorkerLink = screen.getByRole("link", { name: /new worker/i })

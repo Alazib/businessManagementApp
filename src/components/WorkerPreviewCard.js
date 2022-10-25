@@ -4,12 +4,7 @@ import { deleteWorker, putNewDataInWorker } from "../apiRequests"
 import getWorkers from "../getWorkers"
 import "../styles/WorkerPreviewCard.css"
 
-function WorkerPreviewCard({
-  workerList,
-  setWorkerList,
-  worker,
-  setWorkerDetail,
-}) {
+function WorkerPreviewCard({ setWorkerList, worker, setWorkerDetail }) {
   const { id, avatar, first_name, last_name } = worker
 
   async function deleteWorkerFromList() {
