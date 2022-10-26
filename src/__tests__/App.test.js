@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
+import user from "@testing-library/user-event"
 import HeaderNavBar from "../components/HeaderNavBar"
 import App from "../components/App"
-import user from "@testing-library/user-event"
 
 function provisionalNoticeScreener() {
   const comingSoon = screen.getByText(/COMING SOON . . ./i)

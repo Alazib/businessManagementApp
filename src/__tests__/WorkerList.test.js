@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
+import user from "@testing-library/user-event"
 import App from "../components/App"
 import HeaderNavBar from "../components/HeaderNavBar"
-import user from "@testing-library/user-event"
-import { scryRenderedComponentsWithType } from "react-dom/test-utils"
 
 const mockFetch1 = {
   json: () =>
@@ -59,22 +59,22 @@ describe("The worker list should render", () => {
     await screen.findByRole("heading", { name: "NON-ACTIVE WORKERS: 1" })
   })
 
-  it("2 worker cards with these elements in each one: the avatar, the name and two buttons", async () => {
+  it("2 worker preview cards with these elements in each one: the avatar, the name and two buttons", async () => {
     renderApp()
     const workerListLink = screen.getByRole("link", { name: /worker list/i })
     user.click(workerListLink)
+
+    const worker1PreviewCard = await screen.findByRole("link", {
+      name: /first1 last1/i,
+    })
+    const worker2PreviewCard = await screen.findByRole("link", {
+      name: /first2 last2/i,
+    })
 
     const arrayWithAllAvatars = await screen.findAllByRole("img", {
       name: /avatar/i,
     })
     const numberOfAvatars = arrayWithAllAvatars.length
-
-    const nameWorker1 = await screen.findByRole("heading", {
-      name: /first1 last1/i,
-    })
-    const nameWorker2 = await screen.findByRole("heading", {
-      name: /first2 last2/i,
-    })
 
     const arrayWithActiveInactiveButtons = await screen.findAllByRole(
       "button",
@@ -82,12 +82,11 @@ describe("The worker list should render", () => {
         name: /active\/inactive/i,
       }
     )
+    const numberOfActiveInactiveButtons = arrayWithActiveInactiveButtons.length
+
     const arrayWithDeleteButtons = await screen.findAllByRole("button", {
       name: /delete worker/i,
     })
-
-    const numberOfActiveInactiveButtons = arrayWithActiveInactiveButtons.length
-
     const numberOfDeleteButtons = arrayWithDeleteButtons.length
 
     expect(numberOfAvatars).toBe(2)

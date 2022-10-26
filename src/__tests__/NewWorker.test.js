@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
+import user from "@testing-library/user-event"
 import App from "../components/App"
 import HeaderNavBar from "../components/HeaderNavBar"
-import user from "@testing-library/user-event"
 
 const mockFetch1 = {
   json: () =>
