@@ -5,7 +5,7 @@ import { deleteWorker, putNewDataInWorker } from "../apiRequests"
 import getWorkers from "../getWorkers"
 import "../styles/WorkerPreviewCard.css"
 
-function WorkerPreviewCard({ setWorkerList, worker, setWorkerDetail }) {
+function WorkerPreviewCard({ setWorkerList, worker, goesToWorkerDetail }) {
   const { id, avatar, first_name, last_name } = worker
 
   async function deleteWorkerFromList() {
@@ -42,8 +42,8 @@ function WorkerPreviewCard({ setWorkerList, worker, setWorkerDetail }) {
         </Link> */}
         <div
           onClick={() => {
-            setWorkerDetail(worker)
-            navigate(`/worker-detail?id=${id}`)
+            goesToWorkerDetail(worker, id)
+           
           }}
         >
           <div className="worker-preview-card-image">

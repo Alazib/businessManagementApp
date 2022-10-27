@@ -2,6 +2,7 @@ import WorkerPreviewCard from "./WorkerPreviewCard"
 import { useEffect } from "react"
 import getWorkers from "../getWorkers"
 import "../styles/WorkerList.css"
+import { useNavigate } from "react-router-dom"
 
 function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
   async function getAndSetWorkers() {
@@ -14,6 +15,8 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
 
     console.log("Ya he seteado el listado de workers")
   }
+  
+  const navigate = useNavigate()
 
   useEffect(() => {
     getAndSetWorkers()
@@ -73,7 +76,10 @@ function WorkerList({ workerList, setWorkerList, setWorkerDetail }) {
               <div key={worker.id}>
                 {WORKER_IS_NOT_ACTIVE && (
                   <WorkerPreviewCard
-                    setWorkerDetail={setWorkerDetail}
+                    goesToWorkerDetail={(worker, id) => {
+                      setWorkerDetail(worker)
+                      navigate(`/worker-detail?id=${id}`)
+                    }}
                     worker={worker}
                     workerList={workerList}
                     setWorkerList={setWorkerList}
