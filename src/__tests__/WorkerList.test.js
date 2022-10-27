@@ -64,10 +64,10 @@ describe("The worker list should render", () => {
     const workerListLink = screen.getByRole("link", { name: /worker list/i })
     user.click(workerListLink)
 
-    const worker1PreviewCard = await screen.findByRole("link", {
+    const worker1PreviewCard = await screen.findByRole("heading", {
       name: /first1 last1/i,
     })
-    const worker2PreviewCard = await screen.findByRole("link", {
+    const worker2PreviewCard = await screen.findByRole("heading", {
       name: /first2 last2/i,
     })
 

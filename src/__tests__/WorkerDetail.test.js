@@ -52,7 +52,7 @@ describe("when user clicks on the worker preview card", () => {
     const workerListLink = screen.getByRole("link", { name: /worker list/i })
     user.click(workerListLink)
 
-    const worker1PreviewCard = await screen.findByRole("link", {
+    const worker1PreviewCard = await screen.findByRole("heading", {
       name: /first1 last1/i,
     })
     user.click(worker1PreviewCard)
