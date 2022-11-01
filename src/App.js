@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router"
 import { useState } from "react"
-import WorkerList from "./WorkerList"
-import WorkerDetail from "./WorkerDetail"
-import MainMenu from "./MainMenu"
-import MarketSurveys from "./MarketSurveys"
-import Inventory from "./Inventory"
-import Contact from "./Contact"
-import NewWorker from "./NewWorker"
+import WorkerList from "./components/WorkerList"
+import WorkerDetail from "./components/WorkerDetail"
+import MainMenu from "./components/MainMenu"
+import MarketSurveys from "./components/MarketSurveys"
+import Inventory from "./components/Inventory"
+import Contact from "./components/Contact"
+import NewWorker from "./components/NewWorker"
 
 function App() {
   const [workerList, setWorkerList] = useState([])

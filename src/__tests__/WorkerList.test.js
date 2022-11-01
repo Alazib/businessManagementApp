@@ -2,7 +2,7 @@
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import user from "@testing-library/user-event"
-import App from "../components/App"
+import App from "../App"
 import HeaderNavBar from "../components/HeaderNavBar"
 
 const mockFetch1 = {

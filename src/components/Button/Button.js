@@ -1,8 +1,14 @@
 import "./Button.css"
 
 function Button({ onClick, label, size }) {
+  function onClickExists() {
+    if (onClick) {
+      onClick()
+    }
+  }
+
   return (
-    <button className={size} onClick={() => onClick()}>
+    <button className={size} onClick={() => onClickExists()}>
       {label}
     </button>
   )

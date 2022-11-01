@@ -7,8 +7,8 @@ import {
   deleteWorker,
   putNewDataInWorker,
   recoverWorkerDetail,
-} from "../apiRequests"
-import getWorkers from "../getWorkers"
+} from "../services/apiRequests"
+import getWorkers from "../services/getWorkers"
 import "../styles/WorkerDetail.css"
 import WorkerIndexCard from "./WorkerIndexCard"
 import Map from "./Map"

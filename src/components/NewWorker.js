@@ -1,7 +1,8 @@
 import Input from "./Input"
+import Button from "./Button/Button"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { postNewWorker } from "../apiRequests"
+import { postNewWorker } from "../services/apiRequests"
 import Label from "./Label"
 import newUserAvatar from "../images/new-user.png"
 import "../styles/Form.css"
@@ -22,6 +23,10 @@ function NewWorker() {
     navigate("/worker-list")
   }
   const navigate = useNavigate()
+
+  function adios() {
+    alert("adios")
+  }
 
   return (
     <>
@@ -87,7 +92,13 @@ function NewWorker() {
             />
           </div>
           <div className="buttons-save-exit">
-            <button type="submit">Save</button>
+            <Button type="submit" label="Save"></Button>
+            <Button
+              onClick={() => {
+                adios()
+              }}
+              label="Exit"
+            ></Button>
           </div>
         </form>
       </div>

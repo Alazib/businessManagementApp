@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
 import Button from "./Button/Button"
-import { deleteWorker, putNewDataInWorker } from "../apiRequests"
-import getWorkers from "../getWorkers"
+import { deleteWorker, putNewDataInWorker } from "../services/apiRequests"
+import getWorkers from "../services/getWorkers"
 import "../styles/WorkerPreviewCard.css"
 
 function WorkerPreviewCard({ setWorkerList, worker, goesToWorkerDetail }) {
@@ -24,26 +22,12 @@ function WorkerPreviewCard({ setWorkerList, worker, goesToWorkerDetail }) {
     setWorkerList(totalWorkers)
   }
 
-  const navigate = useNavigate()
-
   return (
     <div className="worker-preview-card-and-buttons">
       <div className="worker-preview-card">
-        {/* <Link
-          to={`/worker-detail?id=${id}`}
-          onClick={() => {
-            setWorkerDetail(worker)
-          }}
-        >
-          <div className="worker-preview-card-image">
-            <img src={avatar} alt="avatar"></img>
-          </div>
-          <h5 className="worker-preview-card-name">{`${first_name} ${last_name}`}</h5>
-        </Link> */}
         <div
           onClick={() => {
             goesToWorkerDetail(worker, id)
-           
           }}
         >
           <div className="worker-preview-card-image">

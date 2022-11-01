@@ -1,8 +1,9 @@
-import { Fragment, useState } from "react"
+import { useState } from "react"
 import Button from "./Button/Button"
 import Input from "./Input"
-import { putNewDataInWorker } from "../apiRequests"
-import getWorkers from "../getWorkers"
+import Label from "./Label"
+import { putNewDataInWorker } from "../services/apiRequests"
+import getWorkers from "../services/getWorkers"
 import "../styles/Form.css"
 
 function Form({
@@ -47,87 +48,74 @@ function Form({
   }
 
   return (
-    <Fragment>
+    <>
       <form className="worker-form" onSubmit={sendInputData}>
         <div>
-          <div>
-            <b>Name:</b>
-            <br></br>
-          </div>
+          <Label htmlFor={"firstName"} text="First name:" />
           <Input
+            id="first name"
             placeholder={first_name}
             name="first_name"
             onChange={handleInputChange}
           ></Input>
         </div>
+
         <div>
+          <Label htmlFor={"lastName"} text="Last name:" />
           <Input
+            id="lastName"
             placeholder={last_name}
             name="last_name"
             onChange={handleInputChange}
           ></Input>
         </div>
+
         <div>
-          <br></br>
-          <b>Age:</b>
-          <br></br>
-        </div>
-        <div>
+          <Label htmlFor={"age"} text="Age:" />
           <Input
+            id="age"
             placeholder={age}
             name="age"
             onChange={handleInputChange}
           ></Input>
         </div>
+
         <div>
-          <br></br>
-          <b>Phone:</b>
-          <br></br>
-        </div>
-        <div>
+          <Label htmlFor={"phone"} text="Phone:" />
           <Input
+            id="phone"
             placeholder={phone}
             name="phone"
             onChange={handleInputChange}
           ></Input>
         </div>
-        <br></br>
+
         <div>
-          <b>Email:</b>
-          <br></br>
-        </div>
-        <div>
+          <Label htmlFor={"email"} text="Email:" />
           <Input
+            id="email"
             placeholder={email}
             name="email"
             onChange={handleInputChange}
           ></Input>
         </div>
-        <br></br>
+
         <div>
-          <b>Address:</b>
-          <br></br>
-        </div>
-        <div>
+          <Label htmlFor={"address"} text="Address:" />
           <Input
+            id="address"
             placeholder={address}
             name="address"
             onChange={handleInputChange}
           ></Input>
         </div>
-        <br></br>
+
         <div className="buttons-save-exit">
-          <Button
-            type="submit"
-            label="Save"
-            onClick={() => {
-              return
-            }}
-          ></Button>
+          <Button type="submit" label="Save"></Button>
           <Button onClick={cancelUpdatingAndCloseForm} label="Exit"></Button>
         </div>
       </form>
-    </Fragment>
+    </>
   )
 }
 

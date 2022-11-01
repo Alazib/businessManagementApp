@@ -9,7 +9,7 @@ const Marker = ({ avatar }) => (
       alt="marker"
       style={{ width: "50px", height: "50px" }}
     ></img>
-    <img className="marker-avatar" src={avatar} alt="worker"></img>
+    <img className="marker-avatar" src={avatar} alt="worker marker"></img>
   </div>
 )
 
