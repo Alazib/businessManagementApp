@@ -47,7 +47,7 @@ function WorkerDetail({
     setWorkerDetail(workerDetailRecovered)
   }
 
-  async function workerStateSwitcher(id) {
+  async function workerStateSwitcher() {
     workerDetail.active = !workerDetail.active
     await putNewDataInWorker(id, workerDetail)
     getAndSetWorkers()
