@@ -1,4 +1,4 @@
-`Business Management App is the 2nd project of my Bootcamp as a Front End Developer. 
+`Business Management App was the 2nd project of my Bootcamp as a Front End Developer. 
 
 Created in React 18.2
  
