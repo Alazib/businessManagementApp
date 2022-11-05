@@ -51,6 +51,7 @@ function renderApp() {
 }
 
 describe("when user clicks on the worker preview card", () => {
+  
   beforeEach(() => {
     global.fetch = jest
       .fn()
