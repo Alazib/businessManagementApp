@@ -16,17 +16,10 @@ function NewWorker() {
 
   async function sendInputData(event) {
     event.preventDefault()
-    console.log("Voy a entrar en postNewWoker()")
     await postNewWorker(newWorker)
-    console.log("Me dirijo al navigate()")
-
     navigate("/worker-list")
   }
   const navigate = useNavigate()
-
-  function adios() {
-    alert("adios")
-  }
 
   return (
     <>
@@ -93,12 +86,7 @@ function NewWorker() {
           </div>
           <div className="buttons-save-exit">
             <Button type="submit" label="Save"></Button>
-            <Button
-              onClick={() => {
-                adios()
-              }}
-              label="Exit"
-            ></Button>
+            <Button label="Exit"></Button>
           </div>
         </form>
       </div>
