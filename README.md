@@ -7,8 +7,8 @@ This app is a CRUD that allows users to manage a business to the full. In this p
 Also, I gave a lot of importance to Testing, using Jest and React Testing Library, with the purpose of creating a quality app.
 
 
-
 How to run it?
+       1.npm install
+       2.npm start
 
-   1. npm install
-   2. npm run
+  
