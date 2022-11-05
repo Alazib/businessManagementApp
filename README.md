@@ -9,5 +9,6 @@ Also, I gave a lot of importance to Testing, using Jest and React Testing Librar
 
 
 How to run it?
-1) npm install
-2) npm run
+
+   1. npm install
+   2. npm run
